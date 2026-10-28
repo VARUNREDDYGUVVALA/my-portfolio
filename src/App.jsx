@@ -21,10 +21,10 @@ import {
 } from 'lucide-react'
 import { contact, experience, projects, skills } from './data'
 const navigation = [
+  ['Work', 'projects'],
   ['About', 'about'],
   ['Expertise', 'skills'],
   ['Experience', 'experience'],
-  ['Work', 'projects'],
 ]
 const icons = { ai: BrainCircuit, ml: Cpu, data: Database, cloud: Cloud }
 function Reveal({ children, className = '', delay = 0 }) {
@@ -70,19 +70,35 @@ function Architecture() {
       label: 'Retrieve',
       text: 'Bring relevant knowledge into context.',
       icon: Database,
+      detail:
+        'Chunking, embeddings, hybrid search, and metadata filters turn enterprise documents into relevant context.',
+      input: 'Documents + enterprise knowledge',
+      output: 'Relevant, filtered context',
+      tools: ['Embeddings', 'OpenSearch', 'Metadata filters'],
     },
     {
       label: 'Reason',
       text: 'Ground the answer. Connect the next step.',
       icon: BrainCircuit,
+      detail:
+        'Ground model responses in retrieved evidence. Orchestrate tool calls with state management and human review.',
+      input: 'Context + user intent',
+      output: 'Grounded responses + governed actions',
+      tools: ['Bedrock', 'LangGraph', 'MCP'],
     },
     {
       label: 'Deliver',
       text: 'Serve through secure, observable APIs.',
       icon: Layers3,
+      detail:
+        'Package services, validate behavior, and monitor the production path with repeatable deployment controls.',
+      input: 'Evaluated AI workflow',
+      output: 'Observable enterprise service',
+      tools: ['FastAPI', 'Kubernetes', 'CI/CD'],
     },
   ]
-  const Icon = stages[stage].icon
+  const current = stages[stage]
+  const Icon = current.icon
   return (
     <div
       className="architecture"
@@ -90,45 +106,86 @@ function Architecture() {
     >
       <div className="architecture-top">
         <span>
-          <i /> SYSTEMS THINKING
+          <i /> INSIDE THE SYSTEM
         </span>
-        <span>01 — 03</span>
+        <span>INTERACTIVE / 0{stage + 1}</span>
       </div>
-      <div className="orbit orbit-outer" />
-      <div className="orbit orbit-inner" />
-      <div className="orbit-axis horizontal" />
-      <div className="orbit-axis vertical" />
-      <div className="diagram-label label-one">
-        <Database size={13} /> Enterprise knowledge
-      </div>
-      <div className="diagram-label label-two">
-        <ShieldCheck size={13} /> Governed by design
-      </div>
-      <div className="core">
-        <Icon size={44} strokeWidth={1.3} />
-        <span>{stages[stage].label}</span>
-      </div>
-      <span className="orbit-dot dot-one" />
-      <span className="orbit-dot dot-two" />
-      <span className="orbit-dot dot-three" />
-      <div className="architecture-bottom">
-        <div
-          className="stage-buttons"
-          role="group"
-          aria-label="Explore AI system stages"
-        >
-          {stages.map((item, i) => (
-            <button
-              key={item.label}
-              aria-pressed={i === stage}
-              onClick={() => setStage(i)}
+      <div className="system-map" aria-hidden="true">
+        <svg viewBox="0 0 420 200">
+          <defs>
+            <pattern
+              id="signal-grid"
+              width="24"
+              height="24"
+              patternUnits="userSpaceOnUse"
             >
-              <span>0{i + 1}</span>
-              {item.label}
-            </button>
-          ))}
+              <circle cx="1" cy="1" r="1" fill="#465044" />
+            </pattern>
+          </defs>
+          <rect width="420" height="200" fill="url(#signal-grid)" />
+          <g fill="none" stroke="#748064" strokeWidth="1">
+            <path d="M25 40H100L165 100H260L325 35H395" />
+            <path d="M25 100H165M260 100H395" />
+            <path d="M25 160H100L165 100M260 100L325 165H395" />
+          </g>
+          <g fill="#c4f36b">
+            {[40, 100, 160].map((y) => (
+              <circle key={y} cx="25" cy={y} r="4" />
+            ))}
+            <circle cx="395" cy="35" r="4" />
+            <circle cx="395" cy="100" r="4" />
+            <circle cx="395" cy="165" r="4" />
+          </g>
+          <rect x="175" y="63" width="76" height="76" rx="16" fill="#c4f36b" />
+          <rect
+            x="166"
+            y="54"
+            width="94"
+            height="94"
+            rx="23"
+            fill="none"
+            stroke="#c4f36b"
+            strokeOpacity=".25"
+          />
+        </svg>
+        <div className="system-core">
+          <Icon size={34} strokeWidth={1.4} />
         </div>
-        <p aria-live="polite">{stages[stage].text}</p>
+        <span className="system-map-label">KNOWLEDGE IN</span>
+        <span className="system-map-label output">IMPACT OUT</span>
+      </div>
+      <div
+        className="stage-buttons"
+        role="group"
+        aria-label="Explore AI system stages"
+      >
+        {stages.map((item, i) => (
+          <button
+            key={item.label}
+            aria-pressed={i === stage}
+            onClick={() => setStage(i)}
+          >
+            <span>0{i + 1}</span>
+            {item.label}
+            <ArrowUpRight size={13} />
+          </button>
+        ))}
+      </div>
+      <div className="system-detail" aria-live="polite">
+        <p className="system-stage-title">{current.text}</p>
+        <p>{current.detail}</p>
+        <div className="system-io">
+          <span>
+            IN <b>{current.input}</b>
+          </span>
+          <span>
+            OUT <b>{current.output}</b>
+          </span>
+        </div>
+        <Tags items={current.tools} />
+      </div>
+      <div className="architecture-caption">
+        CONCEPTUAL WALKTHROUGH · NO LIVE MODEL CALLS
       </div>
     </div>
   )
@@ -226,6 +283,9 @@ function ProjectDialog({ project, onClose }) {
         <X />
       </button>
       <p className="eyebrow">{project.category}</p>
+      <p className="project-index" aria-hidden="true">
+        /{project.number}
+      </p>
       <h2 id="dialog-title">{project.title}</h2>
       <p className="dialog-client">Client engagement · {project.client}</p>
       <div className="dialog-metric">
@@ -251,6 +311,7 @@ function ProjectDialog({ project, onClose }) {
   )
 }
 export default function App() {
+  const [industry, setIndustry] = useState('All')
   const [menu, setMenu] = useState(false),
     [active, setActive] = useState(''),
     [selected, setSelected] = useState(null),
@@ -340,37 +401,47 @@ export default function App() {
           </button>
         </div>
       </header>
+      <aside className="folio-rail" aria-hidden="true">
+        <span>VG / ENGINEERING FIELDBOOK</span>
+        <span>PYTHON → INTELLIGENCE → IMPACT</span>
+        <span>EST. 2015</span>
+      </aside>
       <main id="main">
         <section className="hero container" id="home">
+          <div className="hero-masthead">
+            <p>
+              VARUNREDDY GUVVALA<span>Senior Python AI Engineer</span>
+            </p>
+            <span className="folio-edition">SELECTED WORK & THINKING / 01</span>
+          </div>
           <div className="hero-grid">
             <Reveal className="hero-copy">
               <p className="eyebrow">
-                <span className="small-line" /> PYTHON · AI · CLOUD
+                <span className="small-line" /> ENGINEERING BEYOND THE NOTEBOOK
               </p>
-              <p className="hero-name">VARUNREDDY GUVVALA</p>
               <h1>
-                Intelligence,
+                AI that earns
                 <br />
-                engineered for
+                its place in
                 <br />
-                <em>the real world.</em>
+                <em>production.</em>
               </h1>
               <p className="hero-description">
-                Senior Python AI Engineer turning complex data into trusted AI
-                systems. From grounded answers to production-ready models, built
-                for impact.
+                I’m Varunreddy. I build the bridge between AI possibility and
+                enterprise reality — grounded retrieval, capable agents, and
+                systems people can trust.
               </p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">
-                  Explore my work <ArrowUpRight size={18} />
+                  See the work <ArrowUpRight size={19} />
                 </a>
                 <a className="text-link" href="#contact">
-                  Get in touch <ArrowRight size={17} />
+                  Let’s talk <ArrowRight size={17} />
                 </a>
               </div>
               <div className="hero-note">
-                <ShieldCheck size={17} />
-                <span>Enterprise rigor. Human-centered outcomes.</span>
+                <ShieldCheck size={16} />
+                <span>Python at the core. Trust at every layer.</span>
               </div>
             </Reveal>
             <Reveal className="hero-art" delay={0.15}>
@@ -378,7 +449,7 @@ export default function App() {
             </Reveal>
           </div>
           <div className="hero-bottom">
-            <span>BUILT ACROSS COMPLEX DOMAINS</span>
+            <span>REAL-WORLD CONTEXT</span>
             <div>
               <span>Healthcare</span>
               <i />
@@ -388,22 +459,109 @@ export default function App() {
               <i />
               <span>Public sector</span>
             </div>
-            <a href="#about" aria-label="Scroll to about">
-              <ArrowDown size={18} />
+            <a href="#projects" aria-label="Scroll to selected work">
+              <ArrowDown size={17} />
             </a>
+          </div>
+        </section>
+        <section className="projects-section section" id="projects">
+          <div className="container">
+            <Reveal>
+              <Heading
+                number="01"
+                eyebrow="SELECTED WORK"
+                title={
+                  <>
+                    The work.
+                    <br />
+                    <em>The difference it made.</em>
+                  </>
+                }
+              >
+                A closer look at systems delivered through professional client
+                engagements.
+              </Heading>
+            </Reveal>
+            <div className="work-toolbar">
+              <span>EXPLORE BY DOMAIN</span>
+              <div role="group" aria-label="Filter case studies by industry">
+                {['All', 'Healthcare', 'Banking', 'Retail'].map((item) => (
+                  <button
+                    key={item}
+                    aria-pressed={industry === item}
+                    onClick={() => setIndustry(item)}
+                  >
+                    {item}
+                    {item === 'All' && <span>03</span>}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="projects-grid" aria-live="polite">
+              {projects
+                .filter(
+                  (project) =>
+                    industry === 'All' || project.category.endsWith(industry),
+                )
+                .map((project, index) => (
+                  <Reveal
+                    className="project-card"
+                    key={project.id}
+                    delay={index * 0.07}
+                  >
+                    <button
+                      onClick={() => setSelected(project)}
+                      aria-label={`Read case study: ${project.title}`}
+                    >
+                      <div
+                        className={`project-visual visual-${project.visual}`}
+                      >
+                        <div className="visual-top">
+                          <span>CASE STUDY / {project.number}</span>
+                          <ArrowUpRight size={20} />
+                        </div>
+                        <ProjectVisual type={project.visual} />
+                        <div className="visual-result">
+                          <strong>{project.metric}</strong>
+                          <span>{project.label}</span>
+                        </div>
+                      </div>
+                      <div className="project-content">
+                        <p className="eyebrow">{project.category}</p>
+                        <p className="project-index" aria-hidden="true">
+                          /{project.number}
+                        </p>
+                        <h3>{project.name}</h3>
+                        <p>{project.summary}</p>
+                        <Tags items={project.tags} />
+                        <div className="project-footer">
+                          <span>{project.client}</span>
+                          <span className="read-case">
+                            View case study <ArrowUpRight size={15} />
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+                  </Reveal>
+                ))}
+            </div>
+            <p className="project-note">
+              <ShieldCheck size={15} /> Professional work summaries. No
+              proprietary code or internal client materials are shared.
+            </p>
           </div>
         </section>
         <section className="about-section section" id="about">
           <div className="container">
             <Reveal>
               <Heading
-                number="01"
+                number="02"
                 eyebrow="THE ENGINEER BEHIND THE SYSTEMS"
                 title={
                   <>
-                    Built on Python.
+                    The person behind
                     <br />
-                    Driven by possibility.
+                    the production system.
                   </>
                 }
               >
@@ -490,13 +648,13 @@ export default function App() {
           <div className="container">
             <Reveal>
               <Heading
-                number="02"
+                number="03"
                 eyebrow="TECHNICAL EXPERTISE"
                 title={
                   <>
-                    A connected stack.
+                    Deep foundations.
                     <br />
-                    An end-to-end mindset.
+                    Connected capabilities.
                   </>
                 }
               >
@@ -526,67 +684,6 @@ export default function App() {
             </div>
           </div>
         </section>
-        <section className="projects-section section" id="projects">
-          <div className="container">
-            <Reveal>
-              <Heading
-                number="03"
-                eyebrow="SELECTED WORK"
-                title={
-                  <>
-                    Complex challenges.
-                    <br />
-                    <em>Concrete outcomes.</em>
-                  </>
-                }
-              >
-                A closer look at systems delivered through professional client
-                engagements.
-              </Heading>
-            </Reveal>
-            <div className="projects-grid">
-              {projects.map((project, index) => (
-                <Reveal
-                  className="project-card"
-                  key={project.id}
-                  delay={index * 0.07}
-                >
-                  <button
-                    onClick={() => setSelected(project)}
-                    aria-label={`Read case study: ${project.title}`}
-                  >
-                    <div className={`project-visual visual-${project.visual}`}>
-                      <div className="visual-top">
-                        <span>CASE STUDY / {project.number}</span>
-                        <ArrowUpRight size={20} />
-                      </div>
-                      <ProjectVisual type={project.visual} />
-                      <div className="visual-result">
-                        <strong>{project.metric}</strong>
-                        <span>{project.label}</span>
-                      </div>
-                    </div>
-                    <div className="project-content">
-                      <p className="eyebrow">{project.category}</p>
-                      <h3>{project.name}</h3>
-                      <p>{project.summary}</p>
-                      <div className="project-footer">
-                        <span>{project.client}</span>
-                        <span className="read-case">
-                          View case study <ArrowUpRight size={15} />
-                        </span>
-                      </div>
-                    </div>
-                  </button>
-                </Reveal>
-              ))}
-            </div>
-            <p className="project-note">
-              <ShieldCheck size={15} /> Professional work summaries. No
-              proprietary code or internal client materials are shared.
-            </p>
-          </div>
-        </section>
         <section className="experience-section section" id="experience">
           <div className="container">
             <Reveal>
@@ -595,8 +692,9 @@ export default function App() {
                 eyebrow="PROFESSIONAL JOURNEY"
                 title={
                   <>
-                    A foundation of depth.
-                    <br />A trajectory of growth.
+                    Every role,
+                    <br />
+                    another layer.
                   </>
                 }
               >
@@ -655,7 +753,7 @@ export default function App() {
               <p className="eyebrow">
                 <span>05</span> EDUCATION
               </p>
-              <h2>Foundations that endure.</h2>
+              <h2>Where it started.</h2>
             </div>
             <div className="education-detail">
               <span className="education-icon">
@@ -677,9 +775,9 @@ export default function App() {
               </p>
               <div className="contact-heading">
                 <h2>
-                  Let’s build
+                  Your next challenge.
                   <br />
-                  <em>something meaningful.</em>
+                  <em>Let’s engineer it.</em>
                 </h2>
                 <ArrowUpRight className="contact-arrow" strokeWidth={0.8} />
               </div>
