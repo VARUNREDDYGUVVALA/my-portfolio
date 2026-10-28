@@ -15,7 +15,7 @@ test('renders resume content and all assets without errors', async ({
     'Varunreddy Guvvala | Senior Python AI Engineer',
   )
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'Intelligence,',
+    'AI that earns',
   )
   for (const id of [
     'about',
@@ -171,4 +171,33 @@ test('accessibility scan passes WCAG AA checks, including modal', async ({
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
     .analyze()
   expect(modal.violations).toEqual([])
+})
+
+test('industry filters show matching case studies and restore all work', async ({
+  page,
+}) => {
+  await page.goto('')
+  const filters = page.getByRole('group', {
+    name: 'Filter case studies by industry',
+  })
+  for (const [industry, title] of [
+    ['Healthcare', 'Healthcare knowledge & agent platform'],
+    ['Banking', 'Financial risk & MLOps platform'],
+    ['Retail', 'Retail recommendation & forecasting'],
+  ]) {
+    await filters.getByRole('button', { name: industry, exact: true }).click()
+    await expect(
+      filters.getByRole('button', { name: industry, exact: true }),
+    ).toHaveAttribute('aria-pressed', 'true')
+    await expect(
+      page.getByRole('button', { name: /^Read case study:/ }),
+    ).toHaveCount(1)
+    await expect(
+      page.getByRole('button', { name: `Read case study: ${title}` }),
+    ).toBeVisible()
+  }
+  await filters.getByRole('button', { name: /All/ }).click()
+  await expect(
+    page.getByRole('button', { name: /^Read case study:/ }),
+  ).toHaveCount(3)
 })

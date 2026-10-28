@@ -1,6 +1,6 @@
 # Varunreddy Guvvala — Professional Portfolio
 
-An original, responsive portfolio for a Senior Python AI Engineer. Built with React, Vite, Tailwind CSS, Lucide, and Motion. Warm ivory, ink blue, cobalt, self-hosted DM Sans and Newsreader typography, and an interactive AI system illustration establish the visual identity.
+An original, responsive portfolio for a Senior Python AI Engineer. Built with React, Vite, Tailwind CSS, Lucide, and Motion. The AI engineering fieldbook design uses graphite surfaces, lime accents, oversized self-hosted DM Sans typography, a technical index rail, and an interactive retrieval-to-production walkthrough. Selected work leads the page through large case-study panels and industry filters.
 
 ## Run locally
 
@@ -37,7 +37,7 @@ Where Chromium is already installed, skip the browser download and run:
 CHROMIUM_PATH=/usr/bin/chromium npm test
 ```
 
-The 12 Playwright checks run across desktop and mobile Chromium. They cover resume content, assets, JavaScript errors, navigation, architecture controls, timeline disclosures, case-study dialogs, keyboard focus, links, overflow at 320/390/768/1024/1440px, and automated WCAG A/AA accessibility checks for the page and modal. Automated accessibility checks supplement manual review; they do not establish complete accessibility conformance. External email delivery and LinkedIn availability are not tested.
+The 14 Playwright checks run across desktop and mobile Chromium. They cover resume content, assets, JavaScript errors, navigation, architecture controls, industry filters, timeline disclosures, case-study dialogs, keyboard focus, links, overflow at 320/390/768/1024/1440px, and automated WCAG A/AA accessibility checks for the page and modal. Automated accessibility checks supplement manual review; they do not establish complete accessibility conformance. External email delivery and LinkedIn availability are not tested.
 
 ## Review before publication
 
