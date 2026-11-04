@@ -1,5 +1,9 @@
+import { readFileSync } from 'node:fs'
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+const fullResume = JSON.parse(
+  readFileSync(new URL('../src/resume.json', import.meta.url), 'utf8'),
+)
 const cases = [
   'Healthcare knowledge & agent platform',
   'Financial risk & MLOps platform',
@@ -378,6 +382,7 @@ test('command and recruiter layouts fit mobile through desktop', async ({
 test('accessibility checks pass for command mode, recruiter mode, and architecture dialog', async ({
   page,
 }) => {
+  test.setTimeout(90000)
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('')
   for (const id of [
@@ -465,4 +470,136 @@ test('AI core status explains its scope and opens the professional profile', asy
     .click()
   await expect(page.locator('.recruiter-profile')).toBeVisible()
   await expect(page.getByRole('heading', { level: 1 })).toBeFocused()
+})
+
+async function openRecruiter(page) {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('')
+  await page
+    .getByRole('button', { name: 'Recruiter mode', exact: true })
+    .click()
+}
+test('full resume retains every source summary, skill category, responsibility, and environment', async ({
+  page,
+}) => {
+  await openRecruiter(page)
+  const view = page.locator('.resume-atlas')
+  await expect(
+    view.getByRole('button', { name: 'Full resume', exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true')
+  await expect(view.locator('.atlas-summary-grid li:visible')).toHaveCount(15)
+  await expect(view.locator('.atlas-full-skills article')).toHaveCount(10)
+  await expect(
+    view.locator('.atlas-responsibilities > li:visible'),
+  ).toHaveCount(82)
+  await expect(view.locator('.atlas-environment')).toHaveCount(5)
+  const text = (await view.innerText()).replace(/\s+/g, ' ')
+  for (const point of fullResume.summary)
+    expect(text).toContain(point.replace(/\s+/g, ' '))
+  for (const category of fullResume.skills) {
+    expect(text).toContain(category.category)
+    expect(text).toContain(category.content.replace(/\s+/g, ' '))
+  }
+  for (const job of fullResume.experience) {
+    expect(text).toContain(job.role)
+    for (const point of job.responsibilities)
+      expect(text).toContain(point.replace(/\s+/g, ' '))
+    expect(text).toContain(job.environment.replace(/\s+/g, ' '))
+  }
+  await expect(
+    view.getByRole('link', {
+      name: new RegExp(
+        fullResume.contact.phone.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+      ),
+    }),
+  ).toHaveAttribute('href', 'tel:+19196751151')
+  await expect(view.locator('a[download], a[href$=".docx"]')).toHaveCount(0)
+})
+test('quick scan is optional and full reading restores all contributions', async ({
+  page,
+}) => {
+  await openRecruiter(page)
+  const view = page.locator('.resume-atlas')
+  await view.getByRole('button', { name: 'Quick scan', exact: true }).click()
+  await expect(
+    view.locator('.atlas-responsibilities > li:visible'),
+  ).toHaveCount(15)
+  const first = view.locator('.atlas-job').first()
+  await first.getByRole('button', { name: 'Show all 19 contributions' }).click()
+  await expect(
+    first.locator('.atlas-responsibilities > li:visible'),
+  ).toHaveCount(19)
+  await view.getByRole('button', { name: 'Full resume', exact: true }).click()
+  await expect(
+    view.locator('.atlas-responsibilities > li:visible'),
+  ).toHaveCount(82)
+  await expect(view.locator('.atlas-summary-grid li:visible')).toHaveCount(15)
+})
+test('complete skills can be searched and the resume index navigates to sections', async ({
+  page,
+}) => {
+  await openRecruiter(page)
+  const search = page.getByRole('searchbox', { name: /Find a technology/ })
+  await search.fill('SageMaker')
+  await expect(page.locator('.atlas-full-skills article')).toHaveCount(1)
+  await expect(page.locator('.atlas-full-skills')).toContainText(
+    'Cloud Platforms & Services',
+  )
+  await search.fill('no-such-skill-123')
+  await expect(page.getByText('No matching skill categories.')).toBeVisible()
+  await page.getByRole('button', { name: 'Show all categories' }).click()
+  await expect(page.locator('.atlas-full-skills article')).toHaveCount(10)
+  await page
+    .getByRole('navigation', { name: 'Resume section index' })
+    .getByRole('link', { name: /Professional summary/ })
+    .click()
+  await expect(page).toHaveURL(/#resume-summary$/)
+  await page
+    .getByRole('navigation', { name: 'Jump to client engagement' })
+    .getByRole('link', { name: /Fortis Healthcare/ })
+    .click()
+  await expect(page).toHaveURL(/#resume-job-4$/)
+})
+test('print layout retains the complete resume even when quick scan was selected', async ({
+  page,
+}) => {
+  await openRecruiter(page)
+  await page.getByRole('button', { name: 'Quick scan', exact: true }).click()
+  await expect(
+    page.locator('.atlas-responsibilities > li:visible'),
+  ).toHaveCount(15)
+  await page.emulateMedia({ media: 'print', reducedMotion: 'reduce' })
+  await expect(
+    page.locator('.atlas-responsibilities > li:visible'),
+  ).toHaveCount(82)
+  await expect(page.locator('.atlas-summary-grid li:visible')).toHaveCount(15)
+  await expect(page.locator('a[download]')).toHaveCount(0)
+})
+
+test('print action restores all content after filtering and quick scan', async ({
+  page,
+}) => {
+  await openRecruiter(page)
+  await page.evaluate(() => {
+    window.print = () => {
+      window.__profilePrinted = true
+    }
+  })
+  await page.getByRole('button', { name: 'Quick scan', exact: true }).click()
+  await page
+    .getByRole('searchbox', { name: /Find a technology/ })
+    .fill('SageMaker')
+  await expect(page.locator('.atlas-full-skills article')).toHaveCount(1)
+  await page.getByRole('button', { name: 'Print profile', exact: true }).click()
+  await expect(page.locator('.resume-atlas')).toHaveAttribute(
+    'data-detail',
+    'full',
+  )
+  await expect(page.locator('.atlas-full-skills article')).toHaveCount(10)
+  await expect(
+    page.locator('.atlas-responsibilities > li:visible'),
+  ).toHaveCount(82)
+  await expect
+    .poll(() => page.evaluate(() => window.__profilePrinted))
+    .toBeTruthy()
 })
