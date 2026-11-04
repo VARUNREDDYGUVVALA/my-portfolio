@@ -56,3 +56,11 @@ The latest resume lists a career timeline beginning in August 2015 and contains 
 The pasted AI ORBIT specification is treated as the user's design request. Its suggested technologies and project prose are not treated as additional resume facts. GPT, Llama, CrewAI, AutoGen, Databricks, Snowflake, Kafka, FAISS, Pinecone, pgvector, and Weaviate are omitted because they are not documented in the latest resume. Evernorth affiliation, denial-analysis work, and effective-date filtering are also not added.
 
 The original name and title remain Varunreddy Guvvala / Senior Python AI/ML Engineer. The globe is a locally rendered 3D illustration; its arcs do not identify actual client deployments or live connections. Agent responsibilities are functional labels for an illustrative MCP workflow, not asserted internal agent names. Recruiter mode displays the same verified facts without the immersive renderer. The terminal returns documented portfolio information and routes to the local profile or architecture views; it does not execute commands or provide a live AI service.
+
+## Complete recruiter view / Career Atlas
+
+The recruiter view uses `src/resume.json`, extracted from the latest AWS resume. All 15 professional-summary statements, all 10 technical-skill categories, all 82 responsibility statements (Cigna 19, Regions 18, San Bernardino County 15, Publix 16, Fortis 14), and all five complete Environment paragraphs are retained verbatim apart from surrounding whitespace. Client names, locations, dates, roles, education, email, phone, and LinkedIn are retained from that source.
+
+Full reading is the default. Quick scan is optional and reversible; every role remains accessible. The print action clears skill filters and selects full detail, while print styles also show every responsibility even if quick scan was selected. No Word/PDF source document, download link, or resume terminal command is restored. The original document remains outside public assets; the complete professional content is presented as readable HTML, as requested.
+
+The additional selected-work cards are clearly identified as resume-backed client case studies. The layout does not invent a graduation date, certification, total-years claim, employer, or extra accomplishment.

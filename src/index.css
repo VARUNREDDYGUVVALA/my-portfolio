@@ -2874,70 +2874,70 @@ details li {
 .profile-skills .tags > span {
   font-size: 9px;
 }
-.profile-experience > article {
+.legacy-profile-experience > article {
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 30px;
   padding: 27px 0;
   border-top: 1px solid var(--line);
 }
-.profile-experience > article > div:first-child > span {
+.legacy-profile-experience > article > div:first-child > span {
   font: 10px/1.9 var(--mono);
   color: var(--text);
 }
-.profile-experience small {
+.legacy-profile-experience small {
   display: block;
   font-size: 10px;
   color: var(--subtle);
   margin-top: 8px;
   line-height: 1.7;
 }
-.profile-experience .eyebrow {
+.legacy-profile-experience .eyebrow {
   font-size: 7px;
   margin-bottom: 10px;
 }
-.profile-experience h3 {
+.legacy-profile-experience h3 {
   font-size: 25px;
   letter-spacing: -0.5px;
   line-height: 1.3;
   margin-bottom: 7px;
 }
-.profile-experience .profile-job-role {
+.legacy-profile-experience .profile-job-role {
   font-size: 13px;
   color: var(--accent);
   margin-bottom: 17px;
 }
-.profile-experience p:not(.eyebrow):not(.profile-job-role) {
+.legacy-profile-experience p:not(.eyebrow):not(.profile-job-role) {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.9;
   margin-bottom: 17px;
 }
-.profile-experience ul {
+.legacy-profile-experience ul {
   font-size: 12px;
   color: var(--muted);
   line-height: 1.9;
   padding-left: 17px;
   margin-bottom: 24px;
 }
-.profile-experience li {
+.legacy-profile-experience li {
   margin: 8px 0;
 }
-.profile-education {
+.legacy-profile-education {
   display: flex;
   align-items: center;
   gap: 25px;
 }
-.profile-education > svg {
+.legacy-profile-education > svg {
   color: var(--accent);
 }
-.profile-education h3 {
+.legacy-profile-education h3 {
   font-size: 20px;
   line-height: 1.4;
   letter-spacing: -0.4px;
   margin-bottom: 8px;
 }
-.profile-education p {
+.legacy-profile-education p {
   font-size: 13px;
   color: var(--muted);
   margin: 0;
@@ -3446,7 +3446,7 @@ html[data-view='recruiter'] {
     flex-wrap: wrap;
     gap: 0;
   }
-  .profile-experience > article {
+  .legacy-profile-experience > article {
     grid-template-columns: 175px 1fr;
     gap: 25px;
   }
@@ -3905,23 +3905,23 @@ html[data-view='recruiter'] {
   .profile-skills h3 {
     font-size: 18px;
   }
-  .profile-experience > article {
+  .legacy-profile-experience > article {
     grid-template-columns: 150px 1fr;
     gap: 23px;
   }
-  .profile-experience > article > div:first-child > span {
+  .legacy-profile-experience > article > div:first-child > span {
     font-size: 9px;
   }
-  .profile-experience small {
+  .legacy-profile-experience small {
     font-size: 9px;
   }
-  .profile-experience h3 {
+  .legacy-profile-experience h3 {
     font-size: 23px;
   }
-  .profile-experience p:not(.eyebrow):not(.profile-job-role) {
+  .legacy-profile-experience p:not(.eyebrow):not(.profile-job-role) {
     font-size: 12px;
   }
-  .profile-experience ul {
+  .legacy-profile-experience ul {
     font-size: 11px;
   }
 }
@@ -4836,49 +4836,49 @@ html[data-view='recruiter'] {
   .profile-skills h3 {
     font-size: 21px;
   }
-  .profile-experience > article {
+  .legacy-profile-experience > article {
     grid-template-columns: 1fr;
     gap: 21px;
     padding-block: 25px;
   }
-  .profile-experience > article > div:first-child {
+  .legacy-profile-experience > article > div:first-child {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
   }
-  .profile-experience > article > div:first-child > span {
+  .legacy-profile-experience > article > div:first-child > span {
     font-size: 9px;
   }
-  .profile-experience small {
+  .legacy-profile-experience small {
     font-size: 8px;
     max-width: 130px;
     text-align: right;
     margin: 0;
   }
-  .profile-experience h3 {
+  .legacy-profile-experience h3 {
     font-size: 25px;
   }
-  .profile-experience .profile-job-role {
+  .legacy-profile-experience .profile-job-role {
     font-size: 12px;
   }
-  .profile-experience p:not(.eyebrow):not(.profile-job-role) {
+  .legacy-profile-experience p:not(.eyebrow):not(.profile-job-role) {
     font-size: 12px;
   }
-  .profile-experience ul {
+  .legacy-profile-experience ul {
     font-size: 12px;
   }
-  .profile-education {
+  .legacy-profile-education {
     gap: 20px;
   }
-  .profile-education > svg {
+  .legacy-profile-education > svg {
     width: 26px;
     flex-shrink: 0;
   }
-  .profile-education h3 {
+  .legacy-profile-education h3 {
     font-size: 18px;
   }
-  .profile-education p {
+  .legacy-profile-education p {
     font-size: 12px;
   }
   .profile-contact > p {
@@ -5486,22 +5486,22 @@ html[data-view='recruiter'] {
   .profile-skills .tags > span {
     font-size: 8px;
   }
-  .profile-experience > article > div:first-child {
+  .legacy-profile-experience > article > div:first-child {
     gap: 15px;
   }
-  .profile-experience > article > div:first-child > span {
+  .legacy-profile-experience > article > div:first-child > span {
     font-size: 8px;
   }
-  .profile-experience small {
+  .legacy-profile-experience small {
     font-size: 7px;
   }
-  .profile-experience h3 {
+  .legacy-profile-experience h3 {
     font-size: 23px;
   }
-  .profile-education {
+  .legacy-profile-education {
     gap: 17px;
   }
-  .profile-education h3 {
+  .legacy-profile-education h3 {
     font-size: 17px;
   }
 }
@@ -5622,26 +5622,26 @@ html[data-view='recruiter'] {
     font-size: 8px;
     margin-bottom: 10px;
   }
-  .profile-experience > article {
+  .legacy-profile-experience > article {
     padding: 15px 0;
     grid-template-columns: 135px 1fr;
     gap: 18px;
     break-inside: avoid;
   }
-  .profile-experience h3 {
+  .legacy-profile-experience h3 {
     font-size: 17px;
   }
-  .profile-experience .profile-job-role {
+  .legacy-profile-experience .profile-job-role {
     font-size: 10px;
   }
-  .profile-experience p:not(.eyebrow):not(.profile-job-role),
-  .profile-experience ul {
+  .legacy-profile-experience p:not(.eyebrow):not(.profile-job-role),
+  .legacy-profile-experience ul {
     font-size: 9px;
   }
-  .profile-education h3 {
+  .legacy-profile-education h3 {
     font-size: 15px;
   }
-  .profile-education p {
+  .legacy-profile-education p {
     font-size: 10px;
   }
   a[href^='mailto']:after {

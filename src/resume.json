@@ -1,0 +1,203 @@
+{
+  "name": "Varunreddy Guvvala",
+  "title": "Senior Python AI/ML Engineer",
+  "contact": {
+    "email": "guvvalavarunreddy2103@gmail.com",
+    "phone": "+1 (919) 675 1151",
+    "telephone": "+19196751151",
+    "linkedin": "https://www.linkedin.com/in/varunreddy-guvvala/"
+  },
+  "summary": [
+    "Senior Python AI/ML Engineer specializing in enterprise Generative AI, Agentic AI, and machine learning, delivering scalable AWS cloud solutions across healthcare, banking, retail, and regulated enterprise business environments, spanning data pipelines.",
+    "Architected production Generative AI applications using Amazon Bedrock, Claude, and Python, enabling enterprise knowledge retrieval, intelligent workflow automation, grounded responses, and secure integration with operational business systems reliably.",
+    "Designed RAG systems using chunking, embeddings, hybrid search, filters, reranking, and grounding checks to retrieve current policies, validate source context, and return clear answers from approved enterprise data, incorporating response quality reviews.",
+    "Orchestrated Agentic AI workflows using LangGraph, LangChain, and MCP, incorporating secure tool calling, persistent workflow state, structured outputs, and human review to govern multi-step tool interactions with authorized enterprise services.",
+    "Applied prompt engineering and LLM evaluation techniques to improve retrieval relevance, response grounding, model reliability, token efficiency, and production readiness within sensitive regulated enterprise AI applications and environments.",
+    "Trained machine learning models with XGBoost, TensorFlow, scikit-learn, and MLflow, covering fraud, credit risk, sales forecasts, and retail demand through feature design, testing, deployment, and ongoing model performance and stability reviews.",
+    "Built Python and FastAPI microservices supporting REST APIs, AI inference, asynchronous processing, reusable service contracts, exception handling, and observability, connecting enterprise applications with governed data and knowledge services.",
+    "Prepared feature engineering and validation and data pipelines using Python, SQL, Pandas, PySpark, and Airflow, preparing validated datasets for machine learning, analytics, model training, and reliable downstream enterprise operational consumption.",
+    "Delivered AWS AI workloads using Docker, Kubernetes, Terraform, and CI/CD, combining managed storage, secure configurations, deployment automation, and monitoring with Azure and GCP platform implementation and delivery experience.",
+    "Established MLOps and LLMOps practices for model tracking, version control, testing, CI/CD, and controlled release reviews, enabling teams to deploy, monitor, and maintain AI services across secure enterprise environments, covering Docker packaging.",
+    "Evaluated model quality using precision, recall, F1-score, ROC-AUC, RMSE, retrieval relevance, and grounding checks, supporting reliable and traceable predictive decisions and accountable deployment of regulated enterprise AI and ML systems.",
+    "Supported healthcare AI for RxClaim, pharmacy claims, prior authorization, member eligibility, and clinical data, applying HIPAA controls and PHI protection to secure data access across regulated enterprise workflows, supporting input data validation.",
+    "Developed banking fraud and risk machine learning solutions for fraud detection, AML, KYC, credit scoring, risk modeling, and loan processing, integrating governed datasets, predictive models, and auditable financial decisions across financial workflows.",
+    "Created retail models for personalization, demand forecasting, pricing, stock planning, and recommendations, using customer behavior, sales trends, and product data to guide store and supply chain business decisions, supporting merchandising analysis.",
+    "Partnered closely with product owners, architects, engineers, and compliance teams on technical design, Agile delivery, model validation, and production releases, translating enterprise requirements into documented, maintainable enterprise AI services."
+  ],
+  "skills": [
+    {
+      "category": "Programming Languages & Python Ecosystem",
+      "content": "Python, SQL, Pandas, NumPy, PySpark, scikit-learn, TensorFlow, XGBoost, Object-Oriented Programming (OOP), Asynchronous Processing"
+    },
+    {
+      "category": "Generative AI & Agentic AI",
+      "content": "Generative AI, LLMs, Amazon Bedrock, Claude, Google Vertex AI, Gemini, Azure AI Services, LangChain, LangGraph, Agentic AI Workflows, Prompt Engineering, Model Context Protocol (MCP), MCP Servers, MCP Clients, MCP Tool Integration, Tool Calling, Structured Outputs, HITL, AI Orchestration"
+    },
+    {
+      "category": "RAG, Retrieval & Vector Search",
+      "content": "Retrieval-Augmented Generation (RAG), RAG Pipelines, Embeddings, Vector Search, Semantic Search, Metadata Filtering, Vertex AI Search, Amazon OpenSearch Vector Search, Azure AI Search, Grounded Response Generation, Retrieval Relevance, Response Validation"
+    },
+    {
+      "category": "Machine Learning & Data Science",
+      "content": "Machine Learning, Regression, Classification, Random Forest, XGBoost, TensorFlow, scikit-learn, Risk Modeling, Credit Scoring, Fraud Detection, Predictive Modeling, Quantitative Models, Recommendation Engine, Personalization, Demand Forecasting, Dynamic Pricing, Feature Engineering, Feature Selection, Hyperparameter Tuning, Cross-Validation, EDA, Statistical Analysis, Hypothesis Testing, Customer Analytics"
+    },
+    {
+      "category": "Model Evaluation & Responsible AI",
+      "content": "Accuracy, Precision, Recall, F1-Score, ROC-AUC, RMSE, MAE, R-Squared, Confusion Matrix, Cross-Validation, Offline Evaluation, Model Benchmarking, Prediction Stability, Drift Monitoring, Retrieval Relevance, Response Grounding, Response Validation, Human-in-the-Loop (HITL), Data Privacy, HIPAA/PHI"
+    },
+    {
+      "category": "Data Engineering & Big Data",
+      "content": "Apache Spark, PySpark, Apache Airflow, ETL Pipelines, Batch Processing, Data Ingestion, Data Cleansing, Data Transformation, Data Aggregation, Data Validation, Data Quality, Data Modeling, Data Warehousing, Feature Pipelines, Clinical Data, Pharmacy Claims, POS Data, Clickstream"
+    },
+    {
+      "category": "Cloud Platforms & Services",
+      "content": "AWS: Amazon Bedrock, SageMaker, S3, EKS, Redshift, IAM, CloudWatch, OpenSearch Vector Search; Azure: Azure Machine Learning, Azure AI Search, Azure Synapse Analytics, ADLS Gen2, Azure Blob Storage, AKS, Key Vault, Azure Monitor; GCP: Vertex AI, Gemini, Vertex AI Search, BigQuery, Google Cloud Storage, GKE, Secret Manager, Cloud Monitoring"
+    },
+    {
+      "category": "Backend, APIs & Microservices",
+      "content": "FastAPI, Flask, REST APIs, API Design, API Integration, Microservices Architecture, Service-Oriented Architecture, Backend Development, Asynchronous Processing, JSON, Swagger/OpenAPI, Exception Handling, Structured Logging, Reusable Service Layers"
+    },
+    {
+      "category": "DevOps, MLOps & Testing",
+      "content": "Docker, Kubernetes, GKE, Amazon EKS, AKS, Terraform, MLflow, Model Serving, Experiment Tracking, Model Versioning, Model Monitoring, CI/CD, Jenkins, GitHub Actions, PyTest, Unit Testing, Integration Testing, API Testing, UAT, Cloud Monitoring, CloudWatch, Azure Monitor, Structured Logging, Release Validation, Production Support"
+    },
+    {
+      "category": "Databases, Tools & Domain Technologies",
+      "content": "Azure Synapse, Amazon Redshift, Google BigQuery, SQL Databases, Git, Jupyter Notebook, Confluence, Agile/Scrum; Healthcare: PBM, Claims Adjudication, Prior Authorization, Pharmacy Claims, Clinical Data; Banking: Fraud Detection, AML, KYC, Risk Modeling, Credit Scoring; Retail: Recommendation Engine, Demand Forecasting, Inventory Optimization, Customer Analytics, POS Data"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Cigna Healthcare",
+      "location": "Dallas, Texas",
+      "dates": "Apr 2024 – Present",
+      "role": "Senior Python AI/ML Engineer",
+      "responsibilities": [
+        "Engineered enterprise Generative AI and RAG applications using Python, FastAPI, Amazon Bedrock, Claude, and OpenSearch Vector Search, improving knowledge retrieval efficiency by 35% across regulated enterprise healthcare operations, supporting prior authorization case reviews.",
+        "Architected AWS-native microservices and secure REST APIs using Python and FastAPI, enabling governed validated model inference, claims data access, healthcare interoperability, workflow integration, and reliable enterprise healthcare application delivery, with exception handling.",
+        "Coordinated Agile/Scrum delivery with architects, product owners, and healthcare stakeholders, contributing to API design, technical reviews, AI/ML validation, sprint demonstrations, documentation, and controlled production release activities across teams, covering sprint planning.",
+        "Developed Python MCP servers and governed tool interfaces connecting LangGraph agents with healthcare APIs, enterprise knowledge services, and protected data sources to enable secure healthcare Agentic AI execution, incorporating tool discovery and authorization controls.",
+        "Integrated RxClaim pharmacy claims, eligibility records, clinical and operational datasets, and healthcare APIs with Amazon S3 and Redshift, establishing reliable Python ingestion pipelines supporting downstream healthcare analytics and AI applications, with data validation checks.",
+        "Transformed healthcare datasets using Python, Pandas, PySpark, and SQL, applying cleansing, standardization, duplicate detection, eligibility validation, and claims reconciliation to prepare reliable features for downstream machine learning workflows, covering source reconciliation.",
+        "Secured healthcare data within Amazon S3 and Amazon Redshift, implementing IAM permissions, encryption, schema validation, source data lineage, and audit controls to protect PHI across regulated enterprise healthcare applications, through protected data access and audit logging.",
+        "Configured OpenSearch Vector Search for healthcare policy retrieval, combining semantic search, metadata filtering, and document relevance controls to support grounded RAG responses for pharmacy claims and prior authorization, covering PBM policies and AI response grounding.",
+        "Assessed Claude models through Amazon Bedrock, evaluating healthcare summarization, knowledge retrieval, and prior authorization assistance while balancing inference latency, response quality, security requirements, and operational costs and inference requirements before deployment.",
+        "Introduced RAG pipelines incorporating document chunking, embeddings, semantic retrieval, context assembly, and prompt engineering, generating grounded responses supported by relevant approved healthcare policies and controlled governed enterprise knowledge data sources.",
+        "Optimized LLM prompts, retrieval configurations, context windows, and response validation controls to strengthen RAG accuracy, reduce unnecessary token consumption, and improve reliability across regulated healthcare claims processing workflows, through grounding checks.",
+        "Orchestrated LangGraph and LangChain agents for prior authorization and utilization management, implementing state management, controlled tool execution, validated structured responses, and Human-in-the-Loop reviews across clinical review and approval tool workflows.",
+        "Created reusable Python service layers and FastAPI integrations supporting FHIR/HL7 interoperability, healthcare standardized API contracts, structured logging, exception management, and maintainable microservices for regulated enterprise healthcare applications and AI workflows.",
+        "Validated RAG quality through retrieval relevance testing, response grounding, offline benchmarks, and safety reviews, strengthening LLM reliability and release readiness for regulated healthcare knowledge applications before production deployment, covering response validation.",
+        "Containerized Python FastAPI and AI inference services using Docker, deploying workloads on Amazon EKS with secure networking, scalable orchestration, controlled configurations, and repeatable production deployment practices across environments, with configuration management.",
+        "Automated CI/CD pipelines using GitHub Actions, PyTest, and Docker, incorporating automated release validation, security checks, container builds, and controlled AWS releases to strengthen deployment consistency and operational release traceability, covering container packaging.",
+        "Provisioned secure AWS infrastructure using Terraform, configuring Amazon EKS, VPC networking, IAM roles, secrets management, and storage resources across development, testing, and governed healthcare production environments with encryption, covering protected storage.",
+        "Instrumented AI microservices with Amazon CloudWatch and AWS X-Ray, monitoring API response latency and service health, retrieval behavior, backend service failures, resource utilization, and operational health to support healthcare production troubleshooting and reliability.",
+        "Strengthened production AI application quality through PyTest, API testing, integration validation, and UAT, verifying healthcare data processing, service behavior, security controls, regression scenarios, and deployment readiness before releases, covering claims reconciliation."
+      ],
+      "environment": "Python, SQL, Pandas, PySpark, FastAPI, Generative AI, RAG, Agentic AI, LangChain, LangGraph, Amazon Bedrock, Claude, OpenSearch Vector Search, Embeddings, Semantic Search, Metadata Filtering, Response Grounding, Redshift, Amazon S3, MCP, Amazon EKS, Docker, Kubernetes, Terraform, GitHub Actions, PyTest, CloudWatch, X-Ray, AWS Secrets Manager, IAM, VPC Networking, FHIR/HL7, PBM, RxClaim, Claims Adjudication, Prior Authorization, Member Eligibility, Pharmacy Claims, Healthcare Interoperability, Utilization Management, Clinical Data, HIPAA/PHI."
+    },
+    {
+      "company": "Regions Bank",
+      "location": "Birmingham, Alabama",
+      "dates": "Dec 2022 – Mar 2024",
+      "role": "ML/MLOps Engineer",
+      "responsibilities": [
+        "Produced predictive machine learning solutions using Python, Azure Machine Learning, XGBoost, and TensorFlow, improving fraud detection precision by 20% while supporting credit scoring and risk modeling and analysis, covering payment systems and predictive scoring.",
+        "Established enterprise MLOps pipelines using Azure Machine Learning, integrating feature engineering, predictive model training, experiment tracking, validation, registry management, inference deployment, monitoring, and controlled model lifecycle governance across environments.",
+        "Facilitated Agile/Scrum collaboration with risk analysts, engineers, and compliance stakeholders, supporting model validation, AML/KYC reviews, technical documentation, sprint planning, demonstrations, and governed production releases across enterprise banking applications.",
+        "Connected financial datasets from SQL databases, ADLS Gen2, payment systems, enterprise lending applications, and internal APIs, creating reliable data ingestion pipelines for machine learning and regulated financial risk analytics, including source record reconciliation checks.",
+        "Prepared financial data using Python, Pandas, PySpark, and SQL, applying normalization, reconciliation, cleansing, and aggregation to prepare consistent datasets for fraud detection and banking credit risk models before reproducible predictive model training and scoring and validation.",
+        "Governed ML datasets across ADLS Gen2 and Azure Synapse, implementing schema validation, controlled access, lineage tracking, reconciliation, and data quality checks for regulated financial model training and scoring workflows before scoring, with source reconciliation.",
+        "Curated financial features from customer transaction behavior, repayment history, credit utilization, and customer risk indicators, applying data validation, missing-value controls, lineage tracking, and consistency checks before predictive model training, covering transaction patterns.",
+        "Selected XGBoost, TensorFlow, and scikit-learn models for fraud classification, AML alert prioritization, credit scoring, and lending analysis, aligning predictive modeling approaches with financial risk requirements, documented model validation, stability reviews, and scoring criteria.",
+        "Constructed machine learning pipelines combining feature engineering, class balancing, probability estimation, and risk segmentation, applying calibrated decision thresholds to support fraud detection, credit scoring, and financial lending analysis, with financial risk features.",
+        "Tuned predictive models through hyperparameter tuning, feature selection, cross-validation, and threshold calibration, strengthening classification performance, reproducibility, and generalization across financial risk and fraud datasets before governed production deployment.",
+        "Operationalized machine learning models using Azure Machine Learning, MLflow, and PySpark, supporting experiment tracking, candidate model comparison, version management, validation, and reproducible production deployment workflows across enterprise banking applications.",
+        "Standardized reusable Python modules for preprocessing, feature engineering, model inference, configuration management, and exception handling, improving ML pipeline maintainability and reducing duplicated implementation logic across financial risk model scoring workflows.",
+        "Verified ML model performance using precision, recall, F1-score, ROC-AUC, confusion matrices, and stability testing, documenting validation evidence before controlled production promotion in regulated banking production environments and applications, covering confusion matrices.",
+        "Deployed model inference services using Docker and Azure Kubernetes Service, implementing container isolation, secure networking, scalable execution, and repeatable MLOps deployment patterns for regulated production banking software applications, with controlled configurations.",
+        "Streamlined MLOps CI/CD using Jenkins, GitHub Actions, and PyTest, integrating model packaging, container builds, validation gates, security checks, and controlled deployment across enterprise banking development and production environments, covering model deployment traceability.",
+        "Configured Azure infrastructure through Terraform, managing AKS, Entra ID, networking, storage, and access policies to support secure, repeatable, and auditable machine learning deployments across governed enterprise banking environments, covering AKS network configuration.",
+        "Monitored ML inference services using Azure Monitor, tracking feature drift, model performance, API latency, service failures, and data quality to support reliable production operations and incident response troubleshooting, covering service failures and model behavior reviews.",
+        "Documented core model governance procedures, ML validation evidence, API contracts, release configurations, and operational runbooks, supporting regulatory audit readiness, knowledge transfer, and reliable documented production handoffs across enterprise banking and IT teams."
+      ],
+      "environment": "Python, SQL, Pandas, PySpark, scikit-learn, XGBoost, TensorFlow, Azure Machine Learning, ADLS Gen2, Azure Synapse Analytics, AKS, MLflow, FastAPI, Docker, Kubernetes, Jenkins, GitHub Actions, Terraform, Entra ID, Azure Monitor, PyTest, Feature Engineering, Model Serving, Model Registry, Model Monitoring, Drift Detection, Cross-Validation, ROC-AUC, Fraud Detection, AML, KYC, Risk Modeling, Credit Scoring, Loan Processing, Payment Systems, Regulatory Reporting, Basel, Data Quality, Model Validation."
+    },
+    {
+      "company": "San Bernardino County",
+      "location": "San Bernardino, California",
+      "dates": "Aug 2019 – Nov 2022",
+      "role": "Sr. Python Software Engineer",
+      "responsibilities": [
+        "Delivered scalable Python backend applications and Azure data processing services, integrating machine learning components and enterprise analytics workflows to improve operational processing efficiency by 25% across public-sector operational systems, supporting ML integration.",
+        "Designed service-oriented architecture using Python, Flask, and REST APIs, integrating Azure services, scheduled processing, and analytical workloads to support secure enterprise application development and maintainable enterprise backend operations, covering analytics services.",
+        "Assembled REST API, SQL database, flat file, and enterprise extract inputs into Python data pipelines, preparing validated datasets for reporting, machine learning, reconciliation, and downstream Azure processing workloads, with source validation and repeatable processing.",
+        "Engineered ETL pipelines using Python, PySpark, Pandas, and SQL, implementing data cleansing, transformation, aggregation, and validation to prepare reliable public-sector datasets for analytics and predictive machine learning applications, covering data aggregation and schema checks.",
+        "Aligned Agile development with product owners, analysts, and engineers, supporting API documentation, PyTest, UAT, defect resolution, and release validation for enterprise Python applications and public-sector operational analytical workflows, covering production troubleshooting.",
+        "Managed Azure Synapse Analytics and ADLS Gen2 datasets, implementing structured schemas, partition-aware processing, data reconciliation, and controlled access to support reliable machine learning and recurring enterprise analytics and reporting workloads, with source validation.",
+        "Implemented data modeling, schema validation, duplicate detection, and data quality controls, improving dataset consistency, traceability, and reliability for downstream machine learning and enterprise reporting applications across public-sector systems, covering source reconciliation.",
+        "Created machine learning components using Python, scikit-learn, TensorFlow, and Azure Machine Learning, supporting classification, forecasting, trend analysis, and data-driven decision support across public-sector operational applications and operational reporting workflows.",
+        "Performed detailed feature engineering, exploratory data analysis, statistical analysis, and model validation, identifying recurring operational patterns and preparing consistent training datasets for predictive analytics and enterprise public-sector operational decision-support applications.",
+        "Improved batch Python processing and Azure Synapse SQL workloads through batching, partitioning, query tuning, and reusable functions, increasing data pipeline efficiency and maintainability across high-volume public-sector reporting and enterprise analytical applications at scale.",
+        "Established secure Flask REST APIs using Python, exposing analytical outputs, triggering backend processing, and integrating enterprise applications through reusable microservices and standardized API contracts across enterprise Azure environments, with exception handling.",
+        "Applied Python OOP, modular architecture, design patterns, and structured logging, improving backend code maintainability, exception handling, operational troubleshooting, and reusable application development across enterprise public-sector software systems and REST APIs.",
+        "Orchestrated scheduled Apache Airflow workflows for Python ETL pipelines, configuring dependencies, retries, validation checkpoints, and failure handling to support reliable data processing and recurring enterprise reporting processing operations, covering workflow dependencies.",
+        "Containerized Python microservices using Docker and deployed workloads on Azure Kubernetes Service, incorporating automated integration testing, CI/CD, secure runtime configurations, and repeatable release processes for public-sector enterprise backend software API applications.",
+        "Administered Azure cloud services including Synapse Analytics, ADLS Gen2, AKS, and Azure Monitor, supporting secure configurations, scalable processing, production monitoring, and reliable enterprise application operations across production environments, covering Key Vault."
+      ],
+      "environment": "Python, SQL, Pandas, PySpark, Flask, REST APIs, OOP, scikit-learn, TensorFlow, Azure Machine Learning, Apache Airflow, Azure Synapse, ADLS Gen2, AKS, Key Vault, Azure Monitor, Docker, CI/CD, PyTest, Batch Processing, ETL/ELT, Data Modeling, Data Quality, Feature Engineering, EDA, Statistical Analysis, Model Validation, UAT, Agile/Scrum."
+    },
+    {
+      "company": "Publix",
+      "location": "Lakeland, Florida",
+      "dates": "Oct 2017 - Jul 2019",
+      "role": "Sr. Python Data Scientist",
+      "responsibilities": [
+        "Developed predictive machine learning models using Python, XGBoost, and SQL, improving recommendation and forecasting accuracy by 18% across retail personalization, inventory optimization, and demand planning and merchandising applications, covering merchandising analytics.",
+        "Integrated retail machine learning outputs into recommendation systems, demand forecasting, and merchandising workflows, supporting personalized digital customer experiences, inventory planning, and operational decisions using validated predictive analytics across retail stores.",
+        "Designed end-to-end data science workflows integrating feature engineering and validation, predictive model training, validation, and predictive scoring, supporting merchandising analytics, inventory planning, and repeatable retail machine learning delivery across business applications.",
+        "Consolidated POS data, clickstream events, inventory records, promotions, and product catalogs through Python data pipelines, creating reliable inputs for recommendation models and retail forecasting applications across store operations, including supply chain records and store data.",
+        "Processed retail datasets using Python, Pandas, NumPy, and SQL, applying cleansing, aggregation, normalization, and preprocessing to prepare consistent customer, product, and transaction features for downstream retail predictive modeling, covering store records and product attributes.",
+        "Engineered feature pipelines incorporating seasonality, promotional activity, lag and trend variables, rolling averages, and customer behavior signals to improve demand forecasting, recommendation systems, and predictive retail analytics across retail stores, covering pricing models.",
+        "Trained and tuned XGBoost, Random Forest, regression, and classification models for personalization, dynamic pricing, customer segmentation, and recommendation workflows, supporting retail decision-making through predictive machine learning techniques and ML model validation.",
+        "Forecasted retail demand using time-series models, POS history, promotional calendars, and seasonal patterns, supporting inventory optimization, replenishment planning, and supply chain coordination across store operations and business planning, covering seasonal trends.",
+        "Refined machine learning models using hyperparameter tuning, cross-validation, feature selection, and model comparison, improving predictive stability, generalization, and reproducibility across retail forecasting and recommendation experiments before production deployment.",
+        "Analyzed retail customer behavior through EDA, hypothesis testing, correlation analysis, and customer segmentation, identifying purchase patterns, pricing signals, and merchandising opportunities for data-driven business decisions across retail operations, covering pricing analysis.",
+        "Collaborated with merchandising, supply chain, analytics, and engineering teams through Agile/Scrum, coordinating model reviews, business validation, technical documentation, and iterative delivery of data science solutions for retail applications, covering retail delivery planning.",
+        "Evaluated forecasting models and recommendation systems using RMSE, MAE, precision, recall, and F1-score, aligning predictive performance with retail business requirements, model reliability and consistency, and controlled production model release approval decisions.",
+        "Created reusable Python modules for feature engineering, model training, inference, and predictive scoring, standardizing analytical execution and improving reproducibility across retail machine learning and forecasting workflows across applications, covering forecasting experiments.",
+        "Structured Python applications using object-oriented programming, reusable model utilities, runtime configuration management, and modular design, improving maintainability and collaboration across retail machine learning development activities and enterprise analytical workflows.",
+        "Strengthened machine learning validation using PyTest, Git, Jupyter Notebook, and data quality checks, supporting reproducible experiments, reliable predictions, code reviews, and controlled analytical delivery across retail analytics applications, covering dependable model handoffs.",
+        "Documented model assumptions, feature definitions, validation metrics, and predictive scoring logic, supporting stakeholder reviews, knowledge transfer, and consistent implementation of retail machine learning workflows across retail analytical teams, covering scoring logic."
+      ],
+      "environment": "Python, SQL, Pandas, NumPy, scikit-learn, XGBoost, Random Forest, Regression, Classification, Time-Series Forecasting, Recommendation Systems, Personalization, Demand Forecasting, Inventory Optimization, Supply Chain, Dynamic Pricing, POS Data, Clickstream, EDA, Cross-Validation, RMSE, MAE, Git."
+    },
+    {
+      "company": "Fortis Healthcare",
+      "location": "India",
+      "dates": "Aug 2015 - Aug 2017",
+      "role": "Python Engineer",
+      "responsibilities": [
+        "Developed Python healthcare applications and data processing pipelines supporting clinical reporting, utilization management, and healthcare analytics, improving operational processing efficiency by 22% across recurring enterprise healthcare data operational reporting workflows.",
+        "Built Python ETL pipelines integrating clinical systems, relational databases, flat files, and operational extracts, supporting reliable healthcare data ingestion, transformation, reconciliation, and recurring clinical reporting and analytics workflows, covering reliable analytical data inputs.",
+        "Collaborated with clinical stakeholders, analysts, and engineering teams through Agile delivery, coordinating data mapping, UAT, technical documentation, and release validation for enterprise healthcare applications and clinical reporting systems, covering API requirements reviews.",
+        "Transformed clinical datasets using Python, Pandas, and SQL, applying cleansing, normalization, aggregation, and validation to prepare consistent healthcare information for analytics, utilization review, and recurring clinical reporting applications, covering dataset reconciliation.",
+        "Structured relational database tables and optimized SQL queries for clinical data, supporting historical clinical reporting, reliable retrieval, structured storage, and efficient access to enterprise healthcare information across healthcare applications, covering relational storage design.",
+        "Implemented data quality controls for missing values, duplicate records, member eligibility, and clinical data validation, improving SQL reconciliation, reporting consistency, and downstream healthcare information reliability across operational systems, covering clinical records.",
+        "Conducted exploratory data analysis, descriptive statistics, correlation analysis, and feature preparation, identifying key utilization patterns, operational trends and anomalies, and opportunities for predictive analytics across clinical and healthcare enterprise operational datasets for ML.",
+        "Trained scikit-learn classification and trend analysis models using Python, supporting early machine learning exploration, clinical pattern identification, operational analytics, and healthcare decision support applications through repeatable model training and validation experiments.",
+        "Created reusable Python modules for data extraction, transformation, validation, and reporting, improving code consistency, reducing duplicated processing logic, and supporting repeatable healthcare ETL workflows across recurring operational jobs, covering recurring batch processing.",
+        "Applied Python OOP, modular design, exception handling, and structured logging, improving application maintainability, reusable backend components, operational troubleshooting, and dependable healthcare software development across enterprise clinical data reporting workflows.",
+        "Established Flask REST APIs using Python, exposing processed healthcare data and analytical outputs through reusable backend services, standardized application integrations, and maintainable API contracts for internal enterprise consumers, covering processed reporting outputs.",
+        "Optimized Python processing and SQL queries through careful batching, reusable functions, and efficient transformations, improving ETL performance, scheduled batch execution, reporting stability, and operational healthcare data processing across healthcare applications at scale.",
+        "Validated Python applications through unit testing, integration testing, UAT, and release validation, verifying healthcare data transformations, reporting accuracy, backend behavior, and production readiness across enterprise healthcare operational workflows, covering defect resolution.",
+        "Maintained technical documentation, source data mappings, processing rules, and validation records, supporting healthcare reporting, application handoffs, knowledge transfer, and maintainable Python data engineering workflows across recurring clinical reporting operations."
+      ],
+      "environment": "Python, SQL, Pandas, scikit-learn, Flask, REST APIs, OOP, ETL, Relational Databases, Data Quality, EDA, SQL Tuning, Classification, Clinical Data, Healthcare Interoperability, Utilization Management, Member Eligibility, Testing, UAT, Agile."
+    }
+  ],
+  "education": {
+    "institution": "Parul University",
+    "location": "India",
+    "degree": "Bachelor of Technology in Computer Science"
+  }
+}
