@@ -7,16 +7,16 @@ export const experience = [
     company: 'Cigna Healthcare',
     sector: 'Healthcare',
     location: 'Dallas, Texas',
-    role: 'Python AI Engineer',
+    role: 'Senior Python AI/ML Engineer',
     dates: 'Apr 2024 — Present',
     metric: '35%',
     result: 'improvement in knowledge-retrieval efficiency',
     description:
-      'Building governed generative AI for healthcare operations, from pharmacy knowledge retrieval to human-reviewed agent workflows.',
+      'Architecting AWS-native Generative AI and RAG applications for regulated healthcare operations, prior authorization, and governed agent workflows.',
     achievements: [
       'Engineered a RAG platform using Amazon Bedrock, Claude, FastAPI, and OpenSearch Vector Search.',
       'Built MCP servers and LangGraph tool integrations for secure healthcare API access and Human-in-the-Loop review.',
-      'Deployed AI services on Amazon EKS with Terraform, GitHub Actions, PyTest, and production observability.',
+      'Deployed FastAPI services on Amazon EKS with Terraform and GitHub Actions; monitored latency, retrieval behavior, and service health through CloudWatch and X-Ray.',
     ],
     tags: ['Python', 'Amazon Bedrock', 'LangGraph', 'MCP', 'OpenSearch', 'AWS'],
   },
@@ -159,6 +159,7 @@ export const skills = [
       'LangGraph',
       'MCP',
       'Amazon Bedrock',
+      'Claude',
       'Gemini / Vertex AI',
       'Prompt engineering',
       'Human-in-the-Loop',
@@ -198,7 +199,8 @@ export const skills = [
     description: 'Built to run beyond the notebook.',
     icon: 'cloud',
     items: [
-      'AWS',
+      'AWS / Amazon EKS',
+      'CloudWatch / X-Ray',
       'Azure',
       'GCP',
       'Docker',
@@ -209,5 +211,206 @@ export const skills = [
       'PyTest',
       'Observability',
     ],
+  },
+]
+
+export const profile = {
+  name: 'Varunreddy Guvvala',
+  title: 'Senior Python AI/ML Engineer',
+  summary:
+    'I design enterprise AI systems that connect the right context, the right tools, and the right controls — from AWS-native RAG to governed agent workflows and predictive machine learning.',
+  source: 'Varun_Guvvala_AWS_BaseResume.docx',
+}
+
+// Conceptual architecture summaries derived from the resume, not internal client blueprints.
+export const systems = {
+  healthcare: [
+    {
+      label: 'FastAPI',
+      type: 'SERVICE LAYER',
+      icon: 'api',
+      detail:
+        'Python microservices expose secure REST APIs for AI inference, healthcare integration, and governed access to operational data.',
+      technology: 'Python · FastAPI · FHIR/HL7',
+    },
+    {
+      label: 'LangGraph + MCP',
+      type: 'ORCHESTRATION',
+      icon: 'agent',
+      detail:
+        'Stateful agent workflows discover authorized MCP tools, call healthcare services, and produce structured outputs with human review.',
+      technology: 'LangGraph · LangChain · MCP',
+    },
+    {
+      label: 'OpenSearch',
+      type: 'RETRIEVAL',
+      icon: 'data',
+      detail:
+        'Document chunking, embeddings, semantic search, and metadata filters retrieve approved healthcare policy context for grounded responses.',
+      technology: 'OpenSearch Vector Search · Embeddings',
+    },
+    {
+      label: 'Bedrock / Claude',
+      type: 'GENERATION',
+      icon: 'brain',
+      detail:
+        'Claude models on Amazon Bedrock support healthcare summarization, knowledge retrieval, and prior authorization assistance.',
+      technology: 'Amazon Bedrock · Claude · Prompt engineering',
+    },
+    {
+      label: 'Validation & review',
+      type: 'GUARDRAILS',
+      icon: 'shield',
+      detail:
+        'Grounding checks, retrieval evaluation, safety reviews, and Human-in-the-Loop controls support reliable, governed healthcare workflows. This represents application controls, not a claim of using the Amazon Bedrock Guardrails product.',
+      technology: 'Grounding · Offline evaluation · Human review',
+    },
+    {
+      label: 'EKS + CloudWatch',
+      type: 'PRODUCTION',
+      icon: 'cloud',
+      detail:
+        'Dockerized services run on Amazon EKS with Terraform and CI/CD. CloudWatch and X-Ray support latency, service-health, and retrieval troubleshooting.',
+      technology: 'Amazon EKS · Terraform · CloudWatch · X-Ray',
+    },
+  ],
+  banking: [
+    {
+      label: 'Financial data',
+      type: 'INGESTION',
+      icon: 'data',
+      detail:
+        'SQL databases, ADLS Gen2, payment systems, and internal APIs supply governed inputs for fraud and risk modeling.',
+      technology: 'ADLS Gen2 · SQL · Internal APIs',
+    },
+    {
+      label: 'Feature pipelines',
+      type: 'PREPARATION',
+      icon: 'api',
+      detail:
+        'Python and PySpark normalize transactions and create customer, repayment-history, utilization, and risk features with quality checks.',
+      technology: 'Python · Pandas · PySpark',
+    },
+    {
+      label: 'XGBoost / TensorFlow',
+      type: 'MODELING',
+      icon: 'brain',
+      detail:
+        'Fraud classification and credit-risk models combine feature engineering, class balancing, probability scores, and calibrated decision thresholds.',
+      technology: 'XGBoost · TensorFlow · scikit-learn',
+    },
+    {
+      label: 'MLflow + Azure ML',
+      type: 'VALIDATION',
+      icon: 'agent',
+      detail:
+        'Experiment tracking, candidate comparison, cross-validation, and model versioning support reproducible model promotion.',
+      technology: 'MLflow · Azure Machine Learning · ROC-AUC',
+    },
+    {
+      label: 'AKS inference',
+      type: 'SERVING',
+      icon: 'cloud',
+      detail:
+        'Containerized model-serving applications use AKS and controlled CI/CD for repeatable inference deployments.',
+      technology: 'Docker · AKS · Jenkins · GitHub Actions',
+    },
+    {
+      label: 'Model monitoring',
+      type: 'OBSERVABILITY',
+      icon: 'shield',
+      detail:
+        'Azure Monitor tracks latency and service failures alongside reviews of model performance, feature drift, and data quality.',
+      technology: 'Azure Monitor · Drift detection · Model governance',
+    },
+  ],
+  retail: [
+    {
+      label: 'POS + clickstream',
+      type: 'DATA SOURCES',
+      icon: 'data',
+      detail:
+        'Store transactions, clickstream, inventory, promotions, and product catalogs provide inputs for retail predictive analytics.',
+      technology: 'POS · Clickstream · SQL',
+    },
+    {
+      label: 'Retail features',
+      type: 'PREPARATION',
+      icon: 'api',
+      detail:
+        'Seasonality, promotions, lags, rolling averages, and customer behavior inform recommendation and forecasting models.',
+      technology: 'Python · Pandas · NumPy',
+    },
+    {
+      label: 'Predictive models',
+      type: 'MODELING',
+      icon: 'brain',
+      detail:
+        'XGBoost, Random Forest, regression, and classification support recommendations, personalization, and demand planning.',
+      technology: 'XGBoost · Random Forest · scikit-learn',
+    },
+    {
+      label: 'Offline validation',
+      type: 'EVALUATION',
+      icon: 'shield',
+      detail:
+        'Cross-validation, hyperparameter tuning, RMSE, MAE, precision, recall, and F1-score guide candidate selection.',
+      technology: 'Cross-validation · RMSE · MAE · F1',
+    },
+    {
+      label: 'Reusable scoring',
+      type: 'INFERENCE',
+      icon: 'agent',
+      detail:
+        'Modular Python utilities standardize feature processing, model inference, and repeatable scoring workflows.',
+      technology: 'Python · OOP · PyTest',
+    },
+    {
+      label: 'Retail decisions',
+      type: 'BUSINESS USE',
+      icon: 'cloud',
+      detail:
+        'Predictions inform merchandising, inventory planning, replenishment, and personalized customer experiences.',
+      technology: 'Recommendations · Demand forecasting',
+    },
+  ],
+}
+
+export const traceSteps = [
+  {
+    label: 'Plan',
+    code: '01 / CONTEXT',
+    title: 'Understand before acting.',
+    detail:
+      'Start with the request and the approved knowledge sources. Assemble relevant context and route the workflow to the appropriate tools.',
+    evidence: 'Resume: retrieval relevance, context assembly, workflow state',
+    icon: 'brain',
+  },
+  {
+    label: 'MCP tool call',
+    code: '02 / EXECUTION',
+    title: 'Give agents governed capabilities.',
+    detail:
+      'Use Python MCP servers and authorized tool interfaces to connect LangGraph workflows with healthcare APIs and enterprise knowledge services.',
+    evidence: 'Resume: MCP servers, tool discovery, authorization controls',
+    icon: 'agent',
+  },
+  {
+    label: 'Human review',
+    code: '03 / CONTROL',
+    title: 'Keep a person in the decision loop.',
+    detail:
+      'Introduce human review and validated structured outputs for regulated prior authorization and utilization-management workflows.',
+    evidence: 'Resume: Human-in-the-Loop, grounding checks, safety reviews',
+    icon: 'shield',
+  },
+  {
+    label: 'Result',
+    code: '04 / DELIVERY',
+    title: 'Deliver. Evaluate. Observe.',
+    detail:
+      'Serve grounded outputs through Python services, evaluate response quality, and monitor API latency, retrieval behavior, and production service health.',
+    evidence: 'Resume: PyTest, offline benchmarks, CloudWatch, X-Ray',
+    icon: 'cloud',
   },
 ]

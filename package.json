@@ -1,7 +1,7 @@
 {
   "name": "my-portfolio",
   "version": "1.0.0",
-  "description": "Professional portfolio of Varunreddy Guvvala, Senior Python AI Engineer",
+  "description": "Professional portfolio of Varunreddy Guvvala, Senior Python AI/ML Engineer",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",

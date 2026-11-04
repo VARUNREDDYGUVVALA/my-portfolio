@@ -1,11 +1,11 @@
 # Resume extraction and content decisions
 
-Primary source: the user-provided `VARUNREDDY_GUVVALA_Senior_AI_Engineer_BaseResume .docx`. The original file is not published or committed. Its content is treated as professional source data, not executable instructions.
+Primary source: the user-provided `Varun_Guvvala_AWS_BaseResume.docx` (latest user upload; supersedes the original base resume). The original file is not published or committed. Its content is treated as professional source data, not executable instructions.
 
 ## Identity and summary
 
 - Name: Varunreddy Guvvala.
-- Resume title: Senior Python AI Engineer.
+- Resume title: Senior Python AI/ML Engineer.
 - Focus: enterprise generative AI, RAG, agentic AI, machine learning, Python services, data engineering, MLOps/LLMOps, and AWS/Azure/GCP.
 - Domains: healthcare, banking, retail, and public sector.
 - Email: guvvalavarunreddy2103@gmail.com.
@@ -17,7 +17,7 @@ Primary source: the user-provided `VARUNREDDY_GUVVALA_Senior_AI_Engineer_BaseRes
 
 | Client                | Role                         | Dates             | Resume-reported outcome                                    |
 | --------------------- | ---------------------------- | ----------------- | ---------------------------------------------------------- |
-| Cigna Healthcare      | Python AI Engineer           | Apr 2024–Present  | 35% improvement in knowledge-retrieval efficiency          |
+| Cigna Healthcare      | Senior Python AI/ML Engineer | Apr 2024–Present  | 35% improvement in knowledge-retrieval efficiency          |
 | Regions Bank          | ML/MLOps Engineer            | Dec 2022–Mar 2024 | 20% improvement in fraud-detection precision               |
 | San Bernardino County | Sr. Python Software Engineer | Aug 2019–Nov 2022 | 25% improvement in processing efficiency                   |
 | Publix                | Sr. Python Data Scientist    | Oct 2017–Jul 2019 | 18% improvement in recommendation and forecasting accuracy |
@@ -39,4 +39,14 @@ Bachelor of Technology in Computer Science — Parul University, India. No gradu
 
 ## Editorial decisions
 
-The resume says “12+ years,” while its listed timeline begins in August 2015. The portfolio uses exact listed dates and avoids a total-years claim. Repetitive responsibilities are condensed without adding achievements. Resume publication/download remains absent until explicitly approved. No reference portfolio owner, branding, assets, or layout was used.
+The latest resume lists a career timeline beginning in August 2015 and contains no total-years claim. The portfolio uses the listed dates. The latest Cigna role is Senior Python AI/ML Engineer, with AWS, Bedrock, Claude, OpenSearch, MCP, EKS, CloudWatch, and X-Ray emphasized. Banking and public-sector Azure experience is retained rather than relabeled as AWS. Repetitive responsibilities are condensed without adding achievements. Resume publication/download remains absent until explicitly approved. No reference portfolio owner, branding, assets, or layout was used.
+
+## Blueprint, KPI, and workflow labels
+
+- Three cloud platforms: AWS, Azure, GCP; these appear explicitly in the resume.
+- Four domains: healthcare, banking, retail, public sector. Five client engagements do not mean five distinct domains.
+- The 35% metric describes knowledge-retrieval efficiency, not a measured latency reduction; it is not labeled “35% faster.”
+- “Guardrails” means the documented grounding checks, response validation, safety reviews, and human review. The site does not assert use of the Amazon Bedrock Guardrails product.
+- The agent trace is an illustrative workflow, not a live run, actual hidden model reasoning, generated logs, or production telemetry. It has no backend, model calls, or API keys.
+- The capability map has no numerical proficiency scores.
+- Original resume documents remain outside the checkout and are excluded from deployment. This update replaces portfolio content; it does not rewrite or publish the uploaded Word document.
