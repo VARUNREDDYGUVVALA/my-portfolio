@@ -603,3 +603,101 @@ test('print action restores all content after filtering and quick scan', async (
     .poll(() => page.evaluate(() => window.__profilePrinted))
     .toBeTruthy()
 })
+
+test('recruiter themes preserve the full resume and persist the selected appearance', async ({
+  page,
+}) => {
+  await openRecruiter(page)
+  const select = page.getByRole('combobox', { name: 'Recruiter theme' })
+  await expect(select).toHaveValue('aurora')
+  for (const theme of ['minimal', 'editorial', 'aurora']) {
+    await select.selectOption(theme)
+    await expect(page.locator('html')).toHaveAttribute(
+      'data-recruiter-theme',
+      theme,
+    )
+    await expect(
+      page.locator('.atlas-responsibilities > li:visible'),
+    ).toHaveCount(82)
+    await expect(page.locator('.atlas-full-skills article')).toHaveCount(10)
+    await expect(page.locator('a[download], a[href$=".docx"]')).toHaveCount(0)
+  }
+  await select.selectOption('minimal')
+  await page.reload()
+  await expect(
+    page.getByRole('combobox', { name: 'Recruiter theme' }),
+  ).toHaveValue('minimal')
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-recruiter-theme',
+    'minimal',
+  )
+})
+test('all recruiter theme palettes meet automated WCAG AA checks', async ({
+  page,
+}) => {
+  test.setTimeout(90000)
+  await openRecruiter(page)
+  for (const theme of ['aurora', 'minimal', 'editorial']) {
+    await page
+      .getByRole('combobox', { name: 'Recruiter theme' })
+      .selectOption(theme)
+    await expect(page.locator('html')).toHaveAttribute(
+      'data-recruiter-theme',
+      theme,
+    )
+    const result = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+      .analyze()
+    expect(
+      result.violations,
+      `${theme} theme contrast and accessibility`,
+    ).toEqual([])
+  }
+})
+test('aurora atmosphere can pause and follows reduced-motion preferences', async ({
+  page,
+}) => {
+  await page.goto('')
+  await page
+    .getByRole('button', { name: 'Recruiter mode', exact: true })
+    .click()
+  await expect(page.locator('html')).toHaveAttribute(
+    'data-recruiter-theme',
+    'aurora',
+  )
+  expect(
+    await page
+      .locator('.atlas-hero')
+      .evaluate((el) => getComputedStyle(el, '::before').animationName),
+  ).toBe('atlas-aurora-drift')
+  await page.getByRole('button', { name: 'Pause atmosphere' }).click()
+  await expect(page.locator('.resume-atlas')).toHaveAttribute(
+    'data-atmosphere',
+    'paused',
+  )
+  expect(
+    await page
+      .locator('.atlas-hero')
+      .evaluate((el) => getComputedStyle(el, '::before').animationPlayState),
+  ).toBe('paused')
+  await page.getByRole('button', { name: 'Resume atmosphere' }).click()
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  expect(
+    await page
+      .locator('.atlas-hero')
+      .evaluate((el) => getComputedStyle(el, '::before').animationName),
+  ).toBe('none')
+})
+test('resume reading progress responds to actual scrolling', async ({
+  page,
+}) => {
+  await openRecruiter(page)
+  const progress = page.getByRole('progressbar', {
+    name: 'Resume reading progress',
+  })
+  await expect(progress).toHaveAttribute('value', '0')
+  await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight))
+  await expect(progress).toHaveAttribute('value', '100')
+  await page.evaluate(() => scrollTo(0, 0))
+  await expect(progress).toHaveAttribute('value', '0')
+})

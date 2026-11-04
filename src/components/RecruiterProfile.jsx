@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   ArrowDown,
   ArrowRight,
@@ -9,6 +9,8 @@ import {
   Mail,
   Phone,
   Printer,
+  Pause,
+  Play,
   Search,
   X,
 } from 'lucide-react'
@@ -44,6 +46,67 @@ const summaryGroups = [
   },
 ]
 export default function RecruiterProfile({ onProject, onArchitecture }) {
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = localStorage.getItem('recruiter-theme')
+      return ['aurora', 'minimal', 'editorial'].includes(saved)
+        ? saved
+        : 'aurora'
+    } catch {
+      return 'aurora'
+    }
+  })
+  useEffect(() => {
+    document.documentElement.dataset.recruiterTheme = theme
+    try {
+      localStorage.setItem('recruiter-theme', theme)
+    } catch {
+      /* Theme persistence is optional. */
+    }
+  }, [theme])
+  const [atmospherePaused, setAtmospherePaused] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const hero = useRef(null)
+  useEffect(() => {
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const distance = document.documentElement.scrollHeight - innerHeight
+      setProgress(
+        distance > 0
+          ? Math.max(0, Math.min(100, Math.round((scrollY / distance) * 100)))
+          : 0,
+      )
+    }
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+    update()
+    addEventListener('scroll', schedule, { passive: true })
+    addEventListener('resize', schedule)
+    return () => {
+      removeEventListener('scroll', schedule)
+      removeEventListener('resize', schedule)
+      cancelAnimationFrame(frame)
+    }
+  }, [])
+  function moveAtmosphere(event) {
+    if (
+      theme !== 'aurora' ||
+      atmospherePaused ||
+      matchMedia('(prefers-reduced-motion: reduce)').matches
+    )
+      return
+    const rect = event.currentTarget.getBoundingClientRect()
+    hero.current.style.setProperty(
+      '--pointer-x',
+      `${((event.clientX - rect.left) / rect.width) * 100}%`,
+    )
+    hero.current.style.setProperty(
+      '--pointer-y',
+      `${((event.clientY - rect.top) / rect.height) * 100}%`,
+    )
+  }
   const [detail, setDetail] = useState('full')
   const [query, setQuery] = useState('')
   const [expanded, setExpanded] = useState([])
@@ -88,6 +151,7 @@ export default function RecruiterProfile({ onProject, onArchitecture }) {
       tabIndex={-1}
       className="recruiter-profile resume-atlas"
       data-detail={detail}
+      data-atmosphere={atmospherePaused ? 'paused' : 'running'}
     >
       <div className="atlas-layout">
         <aside className="atlas-index">
@@ -108,6 +172,17 @@ export default function RecruiterProfile({ onProject, onArchitecture }) {
               </a>
             ))}
           </nav>
+          <div className="atlas-progress">
+            <div>
+              <span>READING PROGRESS</span>
+              <strong>{progress}%</strong>
+            </div>
+            <progress
+              aria-label="Resume reading progress"
+              value={progress}
+              max="100"
+            />
+          </div>
           <div className="atlas-index-footer">
             <span>CORE DISCIPLINE</span>
             <strong>Python → AI → Enterprise</strong>
@@ -117,10 +192,47 @@ export default function RecruiterProfile({ onProject, onArchitecture }) {
           </div>
         </aside>
         <div className="atlas-document">
-          <section id="home" className="atlas-hero">
+          <section
+            id="home"
+            className="atlas-hero"
+            ref={hero}
+            onPointerMove={moveAtmosphere}
+          >
             <div className="atlas-sheet-line">
               <span>PROFESSIONAL PROFILE</span>
-              <span>ENGINEERING / INTELLIGENCE / IMPACT</span>
+              <div className="atlas-appearance-controls">
+                {' '}
+                <label className="atlas-theme-picker">
+                  APPEARANCE
+                  <select
+                    aria-label="Recruiter theme"
+                    value={theme}
+                    onChange={(e) => setTheme(e.target.value)}
+                  >
+                    <option value="aurora">Aurora live</option>
+                    <option value="minimal">Minimal premium</option>
+                    <option value="editorial">Creative editorial</option>
+                  </select>
+                </label>
+                {theme === 'aurora' && (
+                  <button
+                    className="atlas-atmosphere-toggle"
+                    aria-label={
+                      atmospherePaused
+                        ? 'Resume atmosphere'
+                        : 'Pause atmosphere'
+                    }
+                    aria-pressed={atmospherePaused}
+                    onClick={() => setAtmospherePaused(!atmospherePaused)}
+                  >
+                    {atmospherePaused ? (
+                      <Play size={13} />
+                    ) : (
+                      <Pause size={13} />
+                    )}
+                  </button>
+                )}
+              </div>
             </div>
             <div className="atlas-hero-content">
               <p className="eyebrow">A CAREER IN CONNECTED SYSTEMS</p>
