@@ -48,7 +48,7 @@ The 42 Playwright checks run across desktop and mobile Chromium. They cover intr
 
 ## Review before publication
 
-The site is intentionally not deployed automatically when code is pushed or merged. Review the design and content locally first. The latest instruction removes resume downloads. No resume document is included in public assets, profile links, or terminal commands. The GitHub link points to this portfolio's known source repository; no personal GitHub profile is invented. No certifications or unsupported technologies, employers, or projects are added.
+The approved site deploys automatically when changes are pushed or merged into `main`. Review future changes on feature branches before merging. The workflow can also be run manually for a retry. The latest instruction removes resume downloads. No resume document is included in public assets, profile links, or terminal commands. The GitHub link points to this portfolio's known source repository; no personal GitHub profile is invented. No certifications or unsupported technologies, employers, or projects are added.
 
 Selected work is labeled as **client engagements**, not open-source repositories. Titles summarize work described in the resume. Client source code and internal materials are not included. Metrics reproduce resume claims and are attributed to the corresponding clients. The additional agent-orchestration selector is a workstream within the Cigna engagement, and the data selector summarizes San Bernardino County work; they are not invented additional projects. Globe arcs, waveforms, particles, and request traces are illustrative, not live production telemetry or geographic deployment claims. The AI CORE status describes this portfolio interface only.
 
@@ -60,7 +60,7 @@ The Vite base is already `/my-portfolio/` for this repository. No backend, datab
 
 1. Push the reviewed changes to `VARUNREDDYGUVVALA/my-portfolio` and merge the portfolio pull request into `main`.
 2. In the repository, open **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**. This requires repository administration access. GitHub Actions must be enabled for the repository.
-3. Open **Actions → Deploy portfolio to GitHub Pages → Run workflow**. Choose `main` and run it only after approving the design.
+3. Pushing or merging approved changes to `main` starts **Actions → Deploy portfolio to GitHub Pages** automatically. To retry manually, choose **Run workflow** on `main`.
 4. The workflow installs locked dependencies, runs lint and the production build, uploads `dist`, and deploys through GitHub's Pages action. Approve the `github-pages` environment if your repository has a protection rule.
 5. After the workflow succeeds, visit **https://varunreddyguvvala.github.io/my-portfolio/**. Verify navigation, assets, case-study dialogs, and contact links on the public site.
 
@@ -82,6 +82,6 @@ If the owner or repository name changes, update `base` in `vite.config.js`, cano
 - `src/index.css`: design tokens, command/recruiter layouts, responsive rules, motion controls, and print styling.
 - `public/`: favicon, social image, crawler metadata, sitemap, with no resume document.
 - `tests/`: browser behavior, privacy/content checks, resource checks, and accessibility checks.
-- `.github/workflows/deploy.yml`: manual Pages deployment after review, using the correct `/my-portfolio/` Vite base.
+- `.github/workflows/deploy.yml`: Pages deployment on approved `main` updates, with manual retry support, using the correct `/my-portfolio/` Vite base.
 
 Fonts are bundled locally. The terminal is a fixed command interpreter: it never runs shell commands, evaluates input, or calls external APIs. Print profile uses the browser's print dialog. Orbit labels, architecture components, and constellation technologies are keyboard-operable buttons.
