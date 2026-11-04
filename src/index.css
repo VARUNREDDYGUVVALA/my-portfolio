@@ -2955,9 +2955,9 @@ html[data-motion='paused'] *:before,
 html[data-motion='paused'] *:after {
   animation-play-state: paused !important;
 }
-html[data-view='recruiter'] *,
-html[data-view='recruiter'] *:before,
-html[data-view='recruiter'] *:after {
+html[data-view='recruiter']:not([data-recruiter-theme='aurora']) *,
+html[data-view='recruiter']:not([data-recruiter-theme='aurora']) *:before,
+html[data-view='recruiter']:not([data-recruiter-theme='aurora']) *:after {
   animation: none !important;
 }
 html[data-view='recruiter'] {

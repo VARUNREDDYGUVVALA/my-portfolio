@@ -1,17 +1,86 @@
 html[data-view='recruiter'] {
-  --bg: #f6f3eb;
-  --bg-alt: #ede8dc;
-  --surface: #fffdf8;
-  --surface-strong: #eee7d8;
-  --text: #252e35;
-  --muted: #5e6568;
-  --subtle: #56605b;
-  --accent: #984426;
-  --accent-ink: #fffdf8;
-  --line: #d0c9bc;
-  --line-faint: #e0dacd;
-  --positive: #466347;
+  color-scheme: dark;
+  --bg: #0c1722;
+  --bg-alt: #112231;
+  --surface: #142636;
+  --surface-strong: #1a3143;
+  --text: #e6eef4;
+  --muted: #b4c2ce;
+  --subtle: #a5b6c4;
+  --accent: #7dddc9;
+  --accent-ink: #0b2522;
+  --line: #355063;
+  --line-faint: #294052;
+  --positive: #a9ddbc;
+  --atlas-hero-start: #142636;
+  --atlas-hero-end: #20394a;
+  --atlas-stamp-line: #4b6979;
+  --atlas-stamp-ink: #a9c3d3;
+  --atlas-panel: #112231;
+  --atlas-panel-soft: #172b3a;
+  --atlas-hover: #233f50;
+  --atlas-active: #7dddc9;
+  --atlas-active-ink: #0b2522;
+  --atlas-positive-bg: #203d37;
+  --atlas-positive-line: #3b695c;
+  --atlas-title-font: 'DM Sans Variable', Arial, sans-serif;
+  --atlas-name-style: normal;
 }
+html[data-view='recruiter'][data-recruiter-theme='minimal'] {
+  color-scheme: light;
+  --bg: #f2f5f9;
+  --bg-alt: #e8eef5;
+  --surface: #ffffff;
+  --surface-strong: #e3edfc;
+  --text: #172b43;
+  --muted: #4a6077;
+  --subtle: #4d6480;
+  --accent: #244fd5;
+  --accent-ink: #ffffff;
+  --line: #becbdb;
+  --line-faint: #d7e0ed;
+  --positive: #226849;
+  --atlas-hero-start: #ffffff;
+  --atlas-hero-end: #e2ecff;
+  --atlas-stamp-line: #b7c7e5;
+  --atlas-stamp-ink: #426185;
+  --atlas-panel: #e8eef5;
+  --atlas-panel-soft: #f6f9fe;
+  --atlas-hover: #dce7fb;
+  --atlas-active: #244fd5;
+  --atlas-active-ink: #ffffff;
+  --atlas-positive-bg: #e5f2e9;
+  --atlas-positive-line: #b1cfbb;
+}
+html[data-view='recruiter'][data-recruiter-theme='editorial'] {
+  color-scheme: light;
+  --bg: #faf5f2;
+  --bg-alt: #f0e6ec;
+  --surface: #fffaf8;
+  --surface-strong: #eadce8;
+  --text: #35293e;
+  --muted: #66566e;
+  --subtle: #67536e;
+  --accent: #754288;
+  --accent-ink: #ffffff;
+  --line: #d2c0d7;
+  --line-faint: #e6d9e9;
+  --positive: #426547;
+  --atlas-hero-start: #fffaf8;
+  --atlas-hero-end: #efe2f2;
+  --atlas-stamp-line: #aa8bb4;
+  --atlas-stamp-ink: #765083;
+  --atlas-panel: #f0e6ec;
+  --atlas-panel-soft: #fcf5fa;
+  --atlas-hover: #e8d9ec;
+  --atlas-active: #754288;
+  --atlas-active-ink: #ffffff;
+  --atlas-positive-bg: #eaf0e5;
+  --atlas-positive-line: #b9cdb1;
+  --atlas-title-font: Georgia, 'Times New Roman', serif;
+  --atlas-name-style: italic;
+}
+
 .resume-atlas {
   background: var(--bg);
 }
@@ -32,7 +101,7 @@ html[data-view='recruiter'] {
   overflow: auto;
 }
 .atlas-index-monogram {
-  font-family: Georgia, serif;
+  font-family: var(--atlas-title-font);
   font-size: 57px;
   letter-spacing: -5px;
   color: var(--text);
@@ -117,7 +186,11 @@ html[data-view='recruiter'] {
 .atlas-hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(125deg, #fffdf8 40%, #eee7d8);
+  background: linear-gradient(
+    125deg,
+    var(--surface) 40%,
+    var(--atlas-hero-end)
+  );
 }
 .atlas-sheet-line {
   display: flex;
@@ -150,8 +223,8 @@ html[data-view='recruiter'] {
   max-width: 700px;
 }
 .atlas-hero h1 > em {
-  font-family: Georgia, serif;
-  font-style: italic;
+  font-family: var(--atlas-title-font);
+  font-style: var(--atlas-name-style);
   font-weight: 400;
   color: var(--accent);
   letter-spacing: -3.5px;
@@ -193,10 +266,10 @@ html[data-view='recruiter'] {
   align-items: center;
   width: 140px;
   height: 195px;
-  border: 1px solid #cfc1a7;
+  border: 1px solid var(--atlas-stamp-line);
   transform: rotate(8deg);
   padding: 20px 15px;
-  color: #665a43;
+  color: var(--atlas-stamp-ink);
   opacity: 1;
 }
 .atlas-hero-stamp > span {
@@ -206,7 +279,7 @@ html[data-view='recruiter'] {
 .atlas-hero-stamp > i {
   height: 1px;
   width: 40px;
-  background: #b8a889;
+  background: var(--atlas-stamp-line);
   margin-top: 10px;
 }
 .atlas-hero-stamp > strong {
@@ -226,7 +299,7 @@ html[data-view='recruiter'] {
   display: grid;
   grid-template-columns: repeat(3, 1fr) 1.5fr;
   border-top: 1px solid var(--line);
-  background: #eee8dc85;
+  background: var(--atlas-panel-soft);
   position: relative;
   z-index: 2;
 }
@@ -280,8 +353,8 @@ html[data-view='recruiter'] {
   align-items: stretch;
   gap: 3px;
   padding: 3px;
-  border: 1px solid #c9beab;
-  background: #f7f3e9;
+  border: 1px solid var(--line);
+  background: var(--surface);
   flex-shrink: 0;
 }
 .atlas-detail-switch > button {
@@ -296,8 +369,8 @@ html[data-view='recruiter'] {
   color: var(--muted);
 }
 .atlas-detail-switch > button[aria-pressed='true'] {
-  background: #253039;
-  color: #fffdf8;
+  background: var(--atlas-active);
+  color: var(--atlas-active-ink);
 }
 .atlas-section {
   padding: 47px 40px;
@@ -312,7 +385,7 @@ html[data-view='recruiter'] {
   color: var(--accent);
 }
 .atlas-section-heading > h2 {
-  font-family: Georgia, serif;
+  font-family: var(--atlas-title-font);
   font-weight: 400;
   font-size: 37px;
   letter-spacing: -1.1px;
@@ -334,7 +407,7 @@ html[data-view='recruiter'] {
 .atlas-summary-grid > article {
   padding: 24px 19px 14px;
   border-right: 1px solid var(--line);
-  background: #faf7ef;
+  background: var(--atlas-panel-soft);
 }
 .atlas-summary-grid > article:last-child {
   border-right: 0;
@@ -376,7 +449,7 @@ html[data-view='recruiter'] {
   display: none;
 }
 .atlas-skills-section {
-  background: #f1ede2;
+  background: var(--atlas-panel);
 }
 .atlas-skill-toolbar {
   display: flex;
@@ -457,7 +530,7 @@ html[data-view='recruiter'] {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   border: 1px solid var(--line);
   margin-bottom: 31px;
-  background: #f0ebdf;
+  background: var(--atlas-panel);
 }
 .atlas-career-map > a {
   padding: 17px 13px;
@@ -468,7 +541,7 @@ html[data-view='recruiter'] {
   border-right: 0;
 }
 .atlas-career-map > a:hover {
-  background: #e7dfce;
+  background: var(--atlas-hover);
 }
 .atlas-career-map > a > span {
   font: 7px/1.8 var(--mono);
@@ -491,7 +564,7 @@ html[data-view='recruiter'] {
   padding: 0;
   border: 1px solid var(--line);
   margin: 0 0 29px;
-  background: #fffdf8;
+  background: var(--surface);
 }
 .profile-experience.atlas-experience > article:last-child {
   margin-bottom: 0;
@@ -506,7 +579,7 @@ html[data-view='recruiter'] {
 }
 .atlas-job-period {
   padding: 25px 23px;
-  background: #f2ece0;
+  background: var(--atlas-panel);
   border-right: 1px solid var(--line);
 }
 .atlas-job-period > span {
@@ -538,9 +611,9 @@ html[data-view='recruiter'] {
 .atlas-current {
   font: 5px var(--mono);
   padding: 4px 5px;
-  color: #426547;
-  background: #edf0e5;
-  border: 1px solid #c0ceb2;
+  color: var(--positive);
+  background: var(--atlas-positive-bg);
+  border: 1px solid var(--atlas-positive-line);
   letter-spacing: 0.4px;
 }
 .profile-experience.atlas-experience .atlas-job-identity h3 {
@@ -560,7 +633,7 @@ html[data-view='recruiter'] {
   align-items: center;
   gap: 14px;
   padding: 20px 25px;
-  background: #f8f3e8;
+  background: var(--atlas-panel-soft);
   border-bottom: 1px solid var(--line);
 }
 .atlas-job-impact > svg {
@@ -629,7 +702,7 @@ html[data-view='recruiter'] {
 }
 .atlas-environment {
   padding: 23px 25px;
-  background: #f2efe6;
+  background: var(--atlas-panel);
   border-top: 1px solid var(--line);
 }
 .atlas-environment > span {
@@ -644,7 +717,7 @@ html[data-view='recruiter'] {
   margin: 11px 0 0;
 }
 .atlas-selected-work {
-  background: #ede8dc;
+  background: var(--atlas-panel);
 }
 .atlas-project-grid {
   display: grid;
@@ -655,14 +728,14 @@ html[data-view='recruiter'] {
   position: relative;
   border: 1px solid var(--line);
   padding: 26px 20px 17px;
-  background: #fffdf8;
+  background: var(--surface);
 }
 .atlas-project-number {
   position: absolute;
   right: 15px;
   top: 16px;
   font: 15px var(--mono);
-  color: #6c6455;
+  color: var(--subtle);
 }
 .atlas-project-grid .eyebrow {
   font-size: 6px;
@@ -692,7 +765,7 @@ html[data-view='recruiter'] {
 .atlas-project-grid .tags > span {
   font-size: 7px;
   padding: 5px 6px;
-  background: #f5f1e8;
+  background: var(--atlas-panel-soft);
 }
 .atlas-project-actions {
   border-top: 1px solid var(--line);
@@ -712,7 +785,7 @@ html[data-view='recruiter'] {
   gap: 25px;
   padding: 29px;
   border: 1px solid var(--line);
-  background: #f5f1e7;
+  background: var(--atlas-panel-soft);
 }
 .atlas-education > svg {
   color: var(--accent);
@@ -738,7 +811,7 @@ html[data-view='recruiter'] {
 }
 .atlas-contact {
   border-bottom: 0;
-  background: #f0eadd;
+  background: var(--atlas-panel);
 }
 .atlas-contact .atlas-section-heading h2 {
   font-size: 39px;
@@ -788,7 +861,7 @@ html[data-view='recruiter'] {
   width: 15px;
 }
 .atlas-contact-grid > a:hover {
-  background: #f7f1e6;
+  background: var(--atlas-hover);
 }
 .atlas-colophon {
   display: flex;
@@ -1056,7 +1129,7 @@ html[data-view='recruiter'] {
     z-index: 20;
     max-height: none;
     padding: 0;
-    background: #f6f3ebf5;
+    background: var(--bg);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
     overflow: auto;
@@ -1089,7 +1162,7 @@ html[data-view='recruiter'] {
     display: none;
   }
   .atlas-index nav > a[aria-current='location'] {
-    background: #ede5d4;
+    background: var(--atlas-hover);
   }
   .atlas-document {
     border-top: 0;
@@ -2155,5 +2228,343 @@ html[data-view='recruiter'] {
   }
   .atlas-contact-grid > a:after {
     content: none !important;
+  }
+}
+.atlas-theme-picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 6px/1.8 var(--mono);
+  letter-spacing: 1px;
+  color: var(--subtle);
+}
+.atlas-theme-picker select {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  padding: 8px 10px;
+  font:
+    10px 'DM Sans Variable',
+    Arial,
+    sans-serif;
+  letter-spacing: 0;
+  max-width: 190px;
+}
+.atlas-theme-picker select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .atlas-theme-picker {
+    gap: 8px;
+    font-size: 5px;
+    letter-spacing: 0.5px;
+  }
+  .atlas-theme-picker select {
+    font-size: 9px;
+    padding: 7px 8px;
+    max-width: 155px;
+  }
+}
+@media (max-width: 480px) {
+  .atlas-theme-picker {
+    font-size: 0;
+    gap: 0;
+  }
+  .atlas-theme-picker select {
+    font-size: 8px;
+    max-width: 140px;
+    padding: 6px 7px;
+  }
+}
+@media print {
+  html[data-view='recruiter'][data-recruiter-theme] {
+    color-scheme: light;
+    --bg: #fff;
+    --bg-alt: #f7f7f7;
+    --surface: #fff;
+    --surface-strong: #f4f4f4;
+    --text: #172b43;
+    --muted: #45576a;
+    --subtle: #45576a;
+    --accent: #244d68;
+    --accent-ink: #fff;
+    --line: #bcc7d0;
+    --line-faint: #d5dde3;
+    --atlas-panel: #f7f7f7;
+    --atlas-panel-soft: #fafafa;
+    --atlas-active: #172b43;
+    --atlas-active-ink: #fff;
+    --atlas-hero-start: #fff;
+    --atlas-hero-end: #fff;
+  }
+  .atlas-theme-picker {
+    display: none !important;
+  }
+}
+.atlas-appearance-controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  position: relative;
+  z-index: 4;
+}
+.atlas-atmosphere-toggle {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  height: 31px;
+  width: 31px;
+  display: grid;
+  place-items: center;
+}
+.atlas-atmosphere-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.atlas-sheet-line {
+  position: relative;
+  z-index: 4;
+}
+.atlas-progress {
+  margin-top: 24px;
+}
+.atlas-progress > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 10px;
+  font: 6px/1.8 var(--mono);
+  letter-spacing: 0.6px;
+  color: var(--subtle);
+}
+.atlas-progress strong {
+  font-weight: 400;
+  color: var(--accent);
+}
+.atlas-progress progress {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border: 0;
+  border-radius: 0;
+  background: var(--line-faint);
+  accent-color: var(--accent);
+}
+.atlas-progress progress::-webkit-progress-bar {
+  background: var(--line-faint);
+}
+.atlas-progress progress::-webkit-progress-value {
+  background: var(--accent);
+}
+.atlas-progress progress::-moz-progress-bar {
+  background: var(--accent);
+}
+html[data-recruiter-theme='aurora'] .resume-atlas {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 10% 20%, #123a3e44, transparent 45%),
+    radial-gradient(ellipse at 100% 0%, #31376644, transparent 40%), var(--bg);
+}
+html[data-recruiter-theme='aurora'] .atlas-hero {
+  isolation: isolate;
+  background: linear-gradient(125deg, #102330, #182c43 70%, #203b47);
+}
+html[data-recruiter-theme='aurora'] .atlas-hero::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 22% 35%, #55dbc52c 0, transparent 43%),
+    radial-gradient(ellipse at 70% 20%, #8a82e52b 0, transparent 43%),
+    radial-gradient(ellipse at 55% 75%, #5fa4ed24 0, transparent 48%);
+  filter: blur(22px);
+  animation: atlas-aurora-drift 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+html[data-recruiter-theme='aurora'] .atlas-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    400px circle at var(--pointer-x, 75%) var(--pointer-y, 30%),
+    #7dddc914,
+    transparent 75%
+  );
+  mix-blend-mode: screen;
+}
+html[data-recruiter-theme='aurora'] .atlas-hero h1 > em {
+  background: linear-gradient(
+    110deg,
+    #a6f1dc,
+    #8acded 45%,
+    #c4b1ff 80%,
+    #a6f1dc
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: atlas-name-shift 16s ease-in-out infinite alternate;
+}
+html[data-recruiter-theme='aurora'] .atlas-hero-stamp {
+  background: linear-gradient(135deg, #72d9c511, #9c8ada15);
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  justify-content: center;
+  top: 125px;
+  box-shadow:
+    0 0 0 12px #7dddc903,
+    0 0 0 26px #7dddc902;
+}
+html[data-recruiter-theme='aurora'] .atlas-hero-stamp > strong {
+  font-family: 'DM Sans Variable', Arial, sans-serif;
+  font-size: 50px;
+  letter-spacing: -3px;
+  line-height: 1.2;
+  color: #b7e4e7;
+}
+html[data-recruiter-theme='aurora'] .atlas-document {
+  box-shadow: 0 20px 90px #0002;
+}
+html[data-recruiter-theme='aurora'] .atlas-summary-grid > article,
+html[data-recruiter-theme='aurora'] .atlas-project-grid > article,
+html[data-recruiter-theme='aurora'] .atlas-full-skills > article,
+html[data-recruiter-theme='aurora'] .atlas-contact-grid > a {
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+html[data-recruiter-theme='aurora'] .atlas-summary-grid > article:hover,
+html[data-recruiter-theme='aurora'] .atlas-project-grid > article:hover,
+html[data-recruiter-theme='aurora'] .atlas-full-skills > article:hover {
+  background: var(--surface-strong);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+html[data-recruiter-theme='aurora'] .atlas-job {
+  border-top-color: #56858b;
+}
+html[data-recruiter-theme='aurora'] .atlas-index-monogram {
+  font-family: 'DM Sans Variable', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 50px;
+  color: var(--accent);
+}
+.resume-atlas[data-atmosphere='paused'] .atlas-hero::before,
+.resume-atlas[data-atmosphere='paused'] .atlas-hero h1 > em {
+  animation-play-state: paused !important;
+}
+@keyframes atlas-aurora-drift {
+  from {
+    transform: translate3d(-4%, -2%, 0) rotate(-8deg);
+  }
+  to {
+    transform: translate3d(6%, 5%, 0) rotate(9deg);
+  }
+}
+@keyframes atlas-name-shift {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
+}
+@media (max-width: 1250px) {
+  html[data-recruiter-theme='aurora'] .atlas-hero-stamp {
+    width: 105px;
+    height: 105px;
+    right: 25px;
+    top: 115px;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero-stamp > strong {
+    font-size: 35px;
+  }
+}
+@media (max-width: 1000px) {
+  .atlas-progress {
+    margin: 0;
+  }
+  .atlas-progress > div {
+    display: none;
+  }
+  .atlas-progress progress {
+    height: 2px;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero-stamp {
+    width: 130px;
+    height: 130px;
+    right: 35px;
+    top: 120px;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero-stamp > strong {
+    font-size: 42px;
+  }
+}
+@media (max-width: 700px) {
+  html[data-recruiter-theme='aurora'] .atlas-hero-stamp {
+    width: 90px;
+    height: 90px;
+    right: 25px;
+    top: 125px;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero-stamp > strong {
+    font-size: 30px;
+  }
+  .atlas-appearance-controls {
+    gap: 7px;
+  }
+  .atlas-atmosphere-toggle {
+    height: 28px;
+    width: 28px;
+  }
+}
+@media (max-width: 480px) {
+  .atlas-theme-picker select {
+    max-width: 125px;
+  }
+  .atlas-atmosphere-toggle {
+    height: 25px;
+    width: 25px;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero-stamp {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-recruiter-theme='aurora'] .atlas-hero::before,
+  html[data-recruiter-theme='aurora'] .atlas-hero h1 > em {
+    animation: none !important;
+    will-change: auto;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero::after {
+    display: none;
+  }
+}
+@media print {
+  .atlas-appearance-controls,
+  .atlas-progress {
+    display: none !important;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero {
+    background: white !important;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero::before,
+  html[data-recruiter-theme='aurora'] .atlas-hero::after {
+    display: none !important;
+  }
+  html[data-recruiter-theme='aurora'] .atlas-hero h1 > em {
+    background: none !important;
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text);
+    animation: none !important;
   }
 }
