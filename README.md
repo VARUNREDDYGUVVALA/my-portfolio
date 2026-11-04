@@ -1,8 +1,13 @@
 # Varunreddy Guvvala — Professional Portfolio
 
-An original, responsive portfolio for a Senior Python AI/ML Engineer, updated from `Varun_Guvvala_AWS_BaseResume.docx`. Built with React, Vite, Tailwind CSS, Lucide, and Motion.
+**AI ORBIT** is an original, static portfolio for Varunreddy Guvvala, Senior Python AI/ML Engineer, based on the latest user-supplied AWS resume. Built with React, Vite, Tailwind CSS, Lucide, Motion, and a self-contained Canvas globe renderer.
 
-The architecture-blueprint design combines a navy engineering grid, thin cyan connections, inspectable system nodes, Healthcare/Banking/Retail tabs, a searchable project register, and an interactive agent-workflow trace. A connected capability map replaces invented skill ratings. Light and dark modes are supported, with the preference stored locally. KPI tiles show resume-reported outcomes and documented coverage, not live telemetry.
+Two complementary experiences:
+
+- **Command mode:** a skippable two-second initialization, an interactive rotating 3D point-cloud Earth, four orbital technology layers, selectable engineering workstreams, inspectable architecture mode, a project universe, an MCP request walkthrough, a connected technology constellation, a local terminal, and contact links.
+- **Recruiter mode / Open profile:** an immediate, clean, printable professional profile with summary, selected work, all skill categories, five client engagements, education, contact links, a GitHub source link, without a resume download.
+
+The intro is remembered for the session; the viewing mode is saved locally. Motion can be paused and reduced-motion preferences bypass the intro and disable visual movement. Recruiter mode unmounts the globe. The globe uses local coastline polygons and mathematical 3D projection: no WebGL requirement, remote Earth texture, external map API, model API, analytics, backend, or credentials. A static globe fallback retains technology navigation if Canvas is unavailable.
 
 ## Run locally
 
@@ -39,13 +44,13 @@ Where Chromium is already installed, skip the browser download and run:
 CHROMIUM_PATH=/usr/bin/chromium npm test
 ```
 
-The 22 Playwright checks run across desktop and mobile Chromium. They cover resume content, assets, JavaScript errors, navigation, selectable architecture nodes, keyboard-accessible domain tabs, project search/filter/reset, agent-trace progression, capability selection, theme persistence, timeline disclosures, case-study dialogs, keyboard focus, links, overflow at 320/390/768/1024/1440px, and automated WCAG A/AA accessibility checks in both themes and the case-study modal. Automated accessibility checks supplement manual review; they do not establish complete accessibility conformance. External email delivery and LinkedIn availability are not tested.
+The 32 Playwright checks run across desktop and mobile Chromium. They cover intro completion/skip/session behavior, actual Canvas rendering, missing assets and runtime errors, system selection, globe shortcuts, architecture inspection, modal focus/return, constellation connections, MCP request progression, terminal commands/history/unknown input/reset, recruiter-mode persistence, the absence of resume downloads, navigation, contact destinations, visual motion pause, reduced-motion preferences, Canvas fallback, and layout at 320/390/768/1024/1440/1920px. Automated WCAG A/AA checks run against command mode, recruiter mode, and the architecture dialog. Automated checks supplement manual review; they do not establish complete accessibility conformance. External email delivery and LinkedIn availability are not tested.
 
 ## Review before publication
 
-The site is intentionally not deployed automatically when code is pushed or merged. Review the design and content locally first. The resume document is not in the repository or public assets. There is no resume download. GitHub profile links are omitted at the owner's request. No certifications or unsupported standalone projects are invented.
+The site is intentionally not deployed automatically when code is pushed or merged. Review the design and content locally first. The latest instruction removes resume downloads. No resume document is included in public assets, profile links, or terminal commands. The GitHub link points to this portfolio's known source repository; no personal GitHub profile is invented. No certifications or unsupported technologies, employers, or projects are added.
 
-Selected work is labeled as **client engagements**, not open-source repositories. Titles summarize work described in the resume. Client source code and internal materials are not included. Metrics reproduce resume claims and are attributed to the corresponding clients.
+Selected work is labeled as **client engagements**, not open-source repositories. Titles summarize work described in the resume. Client source code and internal materials are not included. Metrics reproduce resume claims and are attributed to the corresponding clients. The additional agent-orchestration selector is a workstream within the Cigna engagement, and the data selector summarizes San Bernardino County work; they are not invented additional projects. Globe arcs, waveforms, particles, and request traces are illustrative, not live production telemetry or geographic deployment claims. The AI CORE status describes this portfolio interface only.
 
 See [content decisions](docs/content-source.md) for resume extraction and editorial notes.
 
@@ -67,12 +72,14 @@ If the owner or repository name changes, update `base` in `vite.config.js`, cano
 
 ## Project structure
 
-- `src/App.jsx`: page sections, navigation, persisted theme selection, and contact interactions.
-- `src/components/`: system blueprints, domain workbench, project register, agent trace, capability map, shared UI, and accessible case-study dialog.
-- `src/data.js`: resume-derived experience, skill categories, case studies, and contact information.
-- `src/index.css`: Tailwind integration, design tokens, responsive layouts, and reduced-motion support.
-- `public/`: favicon, social image, crawler instructions, and sitemap; no resume document.
-- `tests/`: browser behavior and accessibility checks.
-- `.github/workflows/deploy.yml`: manual deployment after review.
+- `src/App.jsx`: mode/intro preferences, navigation, motion controls, modal coordination, experience, and contact.
+- `src/data.js`: resume-derived professional content and conceptual architecture nodes.
+- `src/orbitData.js`: orbital layers, workstream selectors, resume/repository URLs, and technology relationships.
+- `src/components/GlobeScene.jsx`: local coastline data, 3D projection, orbital geometry, particles, Canvas fallback, and cleanup of render/resize/visibility observers.
+- `src/components/`: command center, project universe, architecture lab, MCP explorer, constellation, terminal, profile, shared UI, and accessible dialogs.
+- `src/index.css`: design tokens, command/recruiter layouts, responsive rules, motion controls, and print styling.
+- `public/`: favicon, social image, crawler metadata, sitemap, with no resume document.
+- `tests/`: browser behavior, privacy/content checks, resource checks, and accessibility checks.
+- `.github/workflows/deploy.yml`: manual Pages deployment after review, using the correct `/my-portfolio/` Vite base.
 
-All fonts are bundled locally through Fontsource; the running site makes no external font, analytics, or API requests. Contact links open the user's email application or LinkedIn. The clipboard button reports success or a manual-copy fallback without requiring a backend.
+Fonts are bundled locally. The terminal is a fixed command interpreter: it never runs shell commands, evaluates input, or calls external APIs. Print profile uses the browser's print dialog. Orbit labels, architecture components, and constellation technologies are keyboard-operable buttons.

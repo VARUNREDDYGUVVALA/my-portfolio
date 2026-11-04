@@ -414,3 +414,54 @@ export const traceSteps = [
     icon: 'cloud',
   },
 ]
+
+systems.data = [
+  {
+    label: 'Source integrations',
+    type: 'INGESTION',
+    icon: 'data',
+    detail:
+      'REST APIs, SQL databases, flat files, and enterprise extracts provide inputs for public-sector analytics and reporting.',
+    technology: 'REST APIs · SQL · Flat files',
+  },
+  {
+    label: 'Python / PySpark',
+    type: 'TRANSFORMATION',
+    icon: 'api',
+    detail:
+      'Cleansing, aggregation, schema checks, and reconciliation prepare reliable operational datasets.',
+    technology: 'Python · Pandas · PySpark',
+  },
+  {
+    label: 'Apache Airflow',
+    type: 'ORCHESTRATION',
+    icon: 'agent',
+    detail:
+      'Scheduled workflows coordinate dependencies, retries, validation checkpoints, and failure handling.',
+    technology: 'Airflow · ETL · Batch processing',
+  },
+  {
+    label: 'Synapse / ADLS',
+    type: 'DATA PLATFORM',
+    icon: 'cloud',
+    detail:
+      'Structured schemas, partition-aware processing, controlled access, and source reconciliation support analytical workloads.',
+    technology: 'Azure Synapse · ADLS Gen2',
+  },
+  {
+    label: 'Flask services',
+    type: 'INTEGRATION',
+    icon: 'brain',
+    detail:
+      'Reusable Python REST APIs expose analytical outputs and integrate internal enterprise applications.',
+    technology: 'Python · Flask · REST APIs',
+  },
+  {
+    label: 'Quality & operations',
+    type: 'OBSERVABILITY',
+    icon: 'shield',
+    detail:
+      'PyTest, UAT, CI/CD, and Azure Monitor support release validation and reliable operational support.',
+    technology: 'PyTest · Azure Monitor · CI/CD',
+  },
+]
