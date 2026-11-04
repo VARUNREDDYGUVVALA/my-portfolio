@@ -1,13 +1,50 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
-
-const titles = [
+const cases = [
   'Healthcare knowledge & agent platform',
   'Financial risk & MLOps platform',
   'Retail recommendation & forecasting',
 ]
+test.beforeEach(async ({ page }, info) => {
+  if (!info.title.includes('intro'))
+    await page.addInitScript(() =>
+      sessionStorage.setItem('ai-orbit-entered', 'true'),
+    )
+})
 
-test('latest resume identity, experience, sections, and assets render without runtime errors', async ({
+test('intro can be skipped immediately and is not replayed in the session', async ({
+  page,
+}) => {
+  await page.goto('')
+  const intro = page.getByRole('dialog', { name: 'AI ORBIT introduction' })
+  await expect(intro).toBeVisible()
+  await intro.getByRole('button', { name: 'Skip intro' }).click()
+  await expect(intro).toHaveCount(0)
+  await expect(page.locator('#main')).toBeFocused()
+  await page.reload()
+  await expect(intro).toHaveCount(0)
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(
+    'VARUNREDDY',
+  )
+})
+test('intro completes its short initialization and offers recruiter bypass', async ({
+  page,
+}) => {
+  await page.goto('')
+  const intro = page.getByRole('dialog', { name: 'AI ORBIT introduction' })
+  await expect(
+    intro.getByText('INTERFACE ONLINE', { exact: true }),
+  ).toBeVisible({ timeout: 6000 })
+  await expect(intro).toContainText(
+    'No production systems are being connected.',
+  )
+  await intro.getByRole('button', { name: 'Recruiter view' }).click()
+  await expect(page.locator('.recruiter-profile')).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Varunreddy Guvvala',
+  )
+})
+test('command center renders the resume, a real globe canvas, and valid assets without errors', async ({
   page,
 }) => {
   const errors = []
@@ -15,27 +52,210 @@ test('latest resume identity, experience, sections, and assets render without ru
   page.on('response', (r) => {
     if (r.status() >= 400) errors.push(`${r.status()} ${r.url()}`)
   })
+  await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('')
   await expect(page).toHaveTitle(
-    'Varunreddy Guvvala | Senior Python AI/ML Engineer',
+    'AI ORBIT | Varunreddy Guvvala — Senior Python AI/ML Engineer',
   )
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'Intelligence out.',
+    'VARUNREDDY',
   )
   await expect(page.locator('#home')).toContainText(
-    'SENIOR PYTHON AI/ML ENGINEER',
+    'Senior Python AI/ML Engineer',
   )
+  await expect
+    .poll(() =>
+      page.locator('canvas').evaluate((c) => {
+        const data = c
+          .getContext('2d')
+          .getImageData(0, 0, c.width, c.height).data
+        let painted = 0
+        for (let i = 3; i < data.length; i += 4) if (data[i] > 10) painted++
+        return painted
+      }),
+    )
+    .toBeGreaterThan(1000)
   for (const id of [
-    'about',
     'projects',
-    'approach',
+    'agents',
     'skills',
     'experience',
     'education',
+    'terminal',
     'contact',
   ])
     await expect(page.locator(`#${id}`)).toHaveCount(1)
-  for (const company of [
+  for (const asset of [
+    'favicon.svg',
+    'social-card.png',
+    'robots.txt',
+    'sitemap.xml',
+  ])
+    expect((await page.request.get(asset)).ok()).toBeTruthy()
+  const source = await page.locator('main').innerText()
+  for (const unsupported of [
+    'CrewAI',
+    'AutoGen',
+    'Snowflake',
+    'Databricks',
+    'FAISS',
+    'Pinecone',
+    'Weaviate',
+    'Evernorth',
+    'effective-date',
+  ])
+    expect(source).not.toContain(unsupported)
+  expect(errors).toEqual([])
+})
+test('engineering system selection updates stack, globe description, and conceptual flow', async ({
+  page,
+}) => {
+  await page.goto('')
+  const group = page.getByRole('group', { name: 'Select engineering system' })
+  await group.getByRole('button', { name: /Banking ML platform/ }).click()
+  await expect(
+    group.getByRole('button', { name: /Banking ML platform/ }),
+  ).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.active-stack')).toContainText('Azure ML')
+  await expect(page.locator('.flow-strip')).toContainText('XGBoost')
+  await expect(
+    page.getByRole('img', { name: /Rotating 3D globe/ }),
+  ).toHaveAttribute('aria-label', /Banking ML platform/)
+  await group.getByRole('button', { name: /Enterprise data workflows/ }).click()
+  await expect(page.locator('.active-stack')).toContainText('Airflow')
+  await expect(page.locator('.system-footer')).toContainText(
+    'San Bernardino County',
+  )
+})
+test('globe shortcuts open architecture mode, inspect nodes, and switch contexts', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('')
+  const shortcuts = page.getByRole('group', {
+    name: 'Navigate architecture from globe',
+  })
+  await shortcuts.getByRole('button', { name: 'RAG', exact: true }).click()
+  const lab = page.getByRole('dialog', { name: 'Architecture mode' })
+  await expect(lab).toBeVisible()
+  await lab.getByRole('button', { name: /03.*OpenSearch/ }).click()
+  await expect(lab.locator('.node-detail')).toContainText('metadata filters')
+  await lab
+    .getByRole('group', { name: 'Select architecture context' })
+    .getByRole('button', { name: 'Banking ML platform', exact: true })
+    .click()
+  await expect(
+    lab.getByRole('group', { name: 'banking architecture components' }),
+  ).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(lab).toHaveCount(0)
+  await expect(
+    shortcuts.getByRole('button', { name: 'RAG', exact: true }),
+  ).toBeFocused()
+  await page.getByRole('button', { name: 'Explore MCP', exact: true }).click()
+  await expect(lab).toBeVisible()
+  await expect(
+    lab.getByRole('heading', { name: 'Governed agent orchestration' }),
+  ).toBeVisible()
+  await lab.getByRole('button', { name: 'Close Architecture mode' }).click()
+})
+test('technology constellation connects nodes to related work', async ({
+  page,
+}) => {
+  await page.goto('')
+  const constellation = page.locator('.constellation-map')
+  await constellation
+    .getByRole('button', { name: 'LangGraph', exact: true })
+    .focus()
+  await expect(page.locator('.technology-inspector')).toContainText(
+    'Cigna Healthcare',
+  )
+  await expect(
+    constellation.getByRole('button', { name: 'MCP', exact: true }),
+  ).toHaveClass(/is-related/)
+  await constellation
+    .getByRole('button', { name: 'MLflow', exact: true })
+    .click()
+  await expect(page.locator('.technology-inspector')).toContainText(
+    'Regions Bank',
+  )
+  await page
+    .locator('.related-work')
+    .getByRole('button', { name: /Regions Bank/ })
+    .click()
+  await expect(
+    page.getByRole('dialog', { name: 'Architecture mode' }),
+  ).toBeVisible()
+})
+test('MCP explorer selects responsibilities and tools and traces a local request', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('')
+  const agents = page.getByRole('group', {
+    name: 'Explore agent responsibilities',
+  })
+  await agents.getByRole('button', { name: /Response validation/ }).click()
+  await page
+    .getByRole('group', { name: 'Explore connected tools' })
+    .getByRole('button', { name: 'Database', exact: true })
+    .click()
+  await expect(page.locator('.mcp-trace-heading')).toContainText(
+    'Response validation → Database',
+  )
+  await page.getByRole('button', { name: 'Trace a request' }).click()
+  await expect(page.locator('.trace-announcement')).toContainText(
+    'Walkthrough complete',
+  )
+  await expect(page.locator('.request-path .is-current')).toContainText(
+    'Grounded response',
+  )
+  await expect(page.locator('.trace-announcement')).toContainText(
+    'not a real healthcare request',
+  )
+})
+test('terminal supports commands, history, unknown input, clear, and resume', async ({
+  page,
+}) => {
+  await page.goto('')
+  const input = page.getByRole('textbox', { name: 'AI-ORBIT >' })
+  await input.fill('help')
+  await input.press('Enter')
+  await expect(page.getByRole('log')).toContainText(
+    'architecture · agentic-ai · rag',
+  )
+  await input.fill('rag')
+  await input.press('Enter')
+  await expect(page.getByRole('log')).toContainText('hybrid retrieval')
+  await input.press('ArrowUp')
+  await expect(input).toHaveValue('rag')
+  await input.fill('<script>bad()</script>')
+  await input.press('Enter')
+  await expect(page.getByRole('log')).toContainText(
+    'Unknown command: <script>bad()</script>',
+  )
+  await input.fill('resume')
+  await input.press('Enter')
+  await expect(
+    page
+      .getByRole('log')
+      .getByRole('link', { name: 'Download resume (.docx)' }),
+  ).toHaveAttribute('download', '')
+  await input.fill('clear')
+  await input.press('Enter')
+  await expect(page.getByRole('log')).toBeEmpty()
+})
+test('recruiter mode shows the complete profile, persists, and downloads the real resume', async ({
+  page,
+}) => {
+  await page.goto('')
+  await page
+    .getByRole('group', { name: 'Portfolio viewing mode' })
+    .getByRole('button', { name: 'Recruiter mode', exact: true })
+    .click()
+  await expect(page.locator('.recruiter-profile')).toBeVisible()
+  await expect(page.locator('canvas')).toHaveCount(0)
+  for (const name of [
     'Cigna Healthcare',
     'Regions Bank',
     'San Bernardino County',
@@ -44,28 +264,32 @@ test('latest resume identity, experience, sections, and assets render without ru
   ])
     await expect(
       page
-        .locator('#experience')
-        .getByRole('heading', { name: company, exact: true }),
-    ).toBeAttached()
-  await expect(page.locator('#experience .job-role').first()).toHaveText(
-    'Senior Python AI/ML Engineer',
+        .locator('.profile-experience')
+        .getByRole('heading', { name, exact: true }),
+    ).toBeVisible()
+  await expect(page.locator('.profile-education')).toContainText(
+    'Parul University',
   )
-  await expect(
-    page.getByRole('heading', { name: 'Bachelor of Technology' }),
-  ).toBeAttached()
-  await expect(
-    page.locator('a[download], a[href*="github.com"], a[href$=".docx"]'),
-  ).toHaveCount(0)
-  for (const asset of [
-    'favicon.svg',
-    'social-card.png',
-    'robots.txt',
-    'sitemap.xml',
-  ])
-    expect((await page.request.get(asset)).ok()).toBeTruthy()
-  expect(errors).toEqual([])
+  const link = page
+    .locator('.profile-hero')
+    .getByRole('link', { name: 'Download resume (.docx)' })
+  await expect(link).toHaveAttribute('download', '')
+  const file = await page.request.get(await link.getAttribute('href'))
+  expect(file.ok()).toBeTruthy()
+  expect((await file.body()).subarray(0, 2).toString()).toBe('PK')
+  expect((await file.body()).length).toBeGreaterThan(30000)
+  await page.reload()
+  await expect(page.locator('html')).toHaveAttribute('data-view', 'recruiter')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Varunreddy Guvvala',
+  )
+  await page
+    .getByRole('group', { name: 'Portfolio viewing mode' })
+    .getByRole('button', { name: 'Command mode', exact: true })
+    .click()
+  await expect(page.locator('canvas')).toHaveCount(1)
 })
-test('navigation, mobile menu Escape, and experience disclosures work', async ({
+test('navigation, internal anchors, contact links, and experience disclosures work', async ({
   page,
   isMobile,
 }) => {
@@ -83,152 +307,143 @@ test('navigation, mobile menu Escape, and experience disclosures work', async ({
     .getByRole('link', { name: 'Experience', exact: true })
     .click()
   await expect(page).toHaveURL(/#experience$/)
-  if (isMobile)
-    await expect(
-      page.getByRole('button', { name: 'Open navigation' }),
-    ).toHaveAttribute('aria-expanded', 'false')
-  const disclosure = page.locator('#experience details').first()
-  await disclosure.locator('summary').click()
-  await expect(disclosure.getByText(/Engineered a RAG platform/)).toBeVisible()
-  await expect(disclosure).toHaveAttribute('open', '')
+  const detail = page.locator('#experience details').first()
+  await detail.locator('summary').click()
+  await expect(detail.getByText(/Engineered a RAG platform/)).toBeVisible()
+  expect(
+    await page
+      .locator('a[href^="#"]')
+      .evaluateAll((links) =>
+        links
+          .map((a) => a.getAttribute('href'))
+          .filter((h) => !document.getElementById(h.slice(1))),
+      ),
+  ).toEqual([])
+  await expect(
+    page.getByRole('link', { name: 'Say hello', exact: true }),
+  ).toHaveAttribute('href', 'mailto:guvvalavarunreddy2103@gmail.com')
+  await expect(
+    page.getByRole('link', { name: 'Connect on LinkedIn' }),
+  ).toHaveAttribute('href', 'https://www.linkedin.com/in/varunreddy-guvvala/')
+  await expect(
+    page.getByRole('link', { name: 'Explore repository' }),
+  ).toHaveAttribute('href', 'https://github.com/VARUNREDDYGUVVALA/my-portfolio')
 })
-test('blueprint components expose relevant detail and selected state', async ({
+test('visual motion can pause and reduced-motion preferences are honored', async ({
   page,
 }) => {
   await page.goto('')
-  const hero = page.locator('#home')
-  const group = hero.getByRole('group', {
-    name: 'healthcare architecture components',
+  await page.getByRole('button', { name: 'Pause all visual motion' }).click()
+  await expect(page.locator('html')).toHaveAttribute('data-motion', 'paused')
+  await page.waitForTimeout(80)
+  const transform = await page
+    .getByRole('button', { name: 'Explore Claude', exact: true })
+    .evaluate((e) => e.style.transform)
+  await page.waitForTimeout(160)
+  expect(
+    await page
+      .getByRole('button', { name: 'Explore Claude', exact: true })
+      .evaluate((e) => e.style.transform),
+  ).toBe(transform)
+  await page.getByRole('button', { name: 'Resume all visual motion' }).click()
+  await expect(page.locator('html')).toHaveAttribute('data-motion', 'running')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.reload()
+  await expect(
+    page.getByRole('dialog', { name: 'AI ORBIT introduction' }),
+  ).toHaveCount(0)
+  await expect(page.locator('html')).toHaveAttribute('data-motion', 'paused')
+  await expect(
+    page.getByRole('button', { name: 'Reduced motion enabled' }),
+  ).toBeDisabled()
+})
+test('command and recruiter layouts fit mobile through desktop', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('')
+  for (const mode of ['command', 'recruiter']) {
+    if (mode === 'recruiter')
+      await page
+        .getByRole('button', { name: 'Recruiter mode', exact: true })
+        .click()
+    for (const width of [320, 390, 768, 1024, 1440, 1920]) {
+      await page.setViewportSize({ width, height: 900 })
+      await page.locator('footer').scrollIntoViewIfNeeded()
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+        `${mode} overflow at ${width}px`,
+      ).toBeTruthy()
+    }
+  }
+})
+test('accessibility checks pass for command mode, recruiter mode, and architecture dialog', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('')
+  for (const id of [
+    'projects',
+    'agents',
+    'skills',
+    'experience',
+    'terminal',
+    'contact',
+  ])
+    await page.locator(`#${id}`).scrollIntoViewIfNeeded()
+  let result = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+    .analyze()
+  expect(result.violations).toEqual([])
+  await page
+    .getByRole('group', { name: 'Navigate architecture from globe' })
+    .getByRole('button', { name: 'RAG', exact: true })
+    .click()
+  result = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+    .analyze()
+  expect(result.violations).toEqual([])
+  await page.keyboard.press('Escape')
+  await page
+    .getByRole('button', { name: 'Recruiter mode', exact: true })
+    .click()
+  result = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+    .analyze()
+  expect(result.violations).toEqual([])
+})
+test('globe has a usable static fallback when canvas is unavailable', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    HTMLCanvasElement.prototype.getContext = function () {
+      return null
+    }
   })
-  await group.getByRole('button', { name: /Bedrock \/ Claude/ }).click()
-  await expect(hero.locator('.node-detail')).toContainText(
-    'Claude models on Amazon Bedrock',
-  )
+  await page.goto('')
+  await expect(page.locator('.globe-fallback')).toBeVisible()
   await expect(
-    group.getByRole('button', { name: /Bedrock \/ Claude/ }),
-  ).toHaveAttribute('aria-pressed', 'true')
-  await group.getByRole('button', { name: /Validation & review/ }).click()
-  await expect(hero.locator('.node-detail')).toContainText(
-    'not a claim of using the Amazon Bedrock Guardrails product',
-  )
+    page.getByRole('button', { name: 'Explore MCP', exact: true }),
+  ).toBeVisible()
+  await page.getByRole('button', { name: 'Explore MCP', exact: true }).click()
+  await expect(
+    page.getByRole('dialog', { name: 'Architecture mode' }),
+  ).toBeVisible()
 })
-test('domain tabs support mouse, keyboard navigation, and matching architecture', async ({
+test('case studies trap focus, close with Escape, and restore the trigger', async ({
   page,
 }) => {
   await page.goto('')
-  const tabs = page.getByRole('tablist', { name: 'Project domains' })
-  await tabs.getByRole('tab', { name: /Banking/ }).click()
-  let panel = page.getByRole('tabpanel')
-  await expect(
-    panel.getByRole('heading', {
-      name: 'From risk signals to reliable decisions.',
-    }),
-  ).toBeVisible()
-  await expect(
-    panel.getByRole('group', { name: 'banking architecture components' }),
-  ).toBeVisible()
-  await page.keyboard.press('ArrowRight')
-  await expect(tabs.getByRole('tab', { name: /Retail/ })).toBeFocused()
-  await expect(page.getByRole('tabpanel')).toContainText('Publix')
-  await page.keyboard.press('Home')
-  await expect(tabs.getByRole('tab', { name: /Healthcare/ })).toHaveAttribute(
-    'aria-selected',
-    'true',
-  )
-  await page.keyboard.press('End')
-  await expect(tabs.getByRole('tab', { name: /Retail/ })).toHaveAttribute(
-    'aria-selected',
-    'true',
-  )
-  await expect(
-    page
-      .getByRole('tabpanel')
-      .getByRole('group', { name: 'retail architecture components' }),
-  ).toBeVisible()
-})
-test('agent trace advances through human review and restarts', async ({
-  page,
-}) => {
-  await page.goto('')
-  const trace = page.locator('.trace-viewer')
-  await expect(trace).toContainText('ILLUSTRATIVE · NOT A LIVE AGENT')
-  await trace.getByRole('button', { name: 'Next step' }).click()
-  await expect(
-    trace.getByRole('heading', { name: 'Give agents governed capabilities.' }),
-  ).toBeVisible()
-  await trace.getByRole('button', { name: 'Next step' }).click()
-  await expect(
-    trace.getByRole('heading', { name: 'Keep a person in the decision loop.' }),
-  ).toBeVisible()
-  await trace.getByRole('button', { name: 'Next step' }).click()
-  await expect(
-    trace.getByRole('heading', { name: 'Deliver. Evaluate. Observe.' }),
-  ).toBeVisible()
-  await trace.getByRole('button', { name: 'Restart walkthrough' }).click()
-  await expect(
-    trace.getByRole('heading', { name: 'Understand before acting.' }),
-  ).toBeVisible()
-})
-test('capability explorer reveals technologies without proficiency claims', async ({
-  page,
-}) => {
-  await page.goto('')
-  const group = page.getByRole('group', {
-    name: 'Explore technical capabilities',
-  })
-  await group.getByRole('button', { name: /Cloud & production/ }).click()
-  await expect(page.locator('.capability-detail')).toContainText(
-    'CloudWatch / X-Ray',
-  )
-  await group.getByRole('button', { name: /Generative & agentic AI/ }).click()
-  await expect(page.locator('.capability-detail')).toContainText('Claude')
-  await expect(page.locator('.capability-map')).toContainText(
-    'not proficiency scores',
-  )
-})
-test('project register filters, searches, handles no results, and resets', async ({
-  page,
-}) => {
-  await page.goto('')
-  const register = page.locator('.project-register')
-  await register.getByLabel('Domain').selectOption('Banking')
-  await expect(
-    register.getByRole('button', { name: /Read case study:/ }),
-  ).toHaveCount(1)
-  await expect(
-    register.getByRole('button', { name: `Read case study: ${titles[1]}` }),
-  ).toBeVisible()
-  await register.getByLabel('Search').fill('nonexistent-test-project')
-  await expect(
-    register.getByText('No case studies match these filters.'),
-  ).toBeVisible()
-  await register.getByRole('button', { name: 'Reset filters' }).click()
-  await expect(
-    register.getByRole('button', { name: /Read case study:/ }),
-  ).toHaveCount(3)
-  await register.getByLabel('Search').fill('bedrock')
-  await expect(
-    register.getByRole('button', { name: `Read case study: ${titles[0]}` }),
-  ).toBeVisible()
-  await expect(
-    register.getByRole('button', { name: /Read case study:/ }),
-  ).toHaveCount(1)
-})
-test('all case studies open, trap focus, close, and restore focus', async ({
-  page,
-}) => {
-  await page.goto('')
-  for (const title of titles) {
+  for (const name of cases) {
     const trigger = page.getByRole('button', {
-      name: `Read case study: ${title}`,
+      name: `Read case study: ${name}`,
       exact: true,
     })
     await trigger.click()
     const dialog = page.getByRole('dialog')
-    await expect(dialog.getByRole('heading', { name: title })).toBeVisible()
-    await expect(
-      dialog.getByRole('heading', { name: 'The outcome' }),
-    ).toBeVisible()
+    await expect(dialog.getByRole('heading', { name })).toBeVisible()
     await page.keyboard.press('Tab')
     expect(
       await page.evaluate(() => !!document.activeElement.closest('dialog')),
@@ -238,79 +453,20 @@ test('all case studies open, trap focus, close, and restore focus', async ({
     await expect(trigger).toBeFocused()
   }
 })
-test('theme selection persists and both modes retain readable layout', async ({
+test('AI core status explains its scope and opens the professional profile', async ({
   page,
 }) => {
   await page.goto('')
-  await page.getByRole('button', { name: 'Switch to light theme' }).click()
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
-  await page.reload()
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
-  await page.getByRole('button', { name: 'Switch to dark theme' }).click()
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-})
-test('contact links and anchors are valid and layout fits mobile through desktop', async ({
-  page,
-}) => {
-  await page.goto('')
-  await expect(page.getByRole('link', { name: 'Say hello' })).toHaveAttribute(
-    'href',
-    'mailto:guvvalavarunreddy2103@gmail.com',
-  )
-  await expect(
-    page.getByRole('link', { name: /Connect on LinkedIn/ }),
-  ).toHaveAttribute('href', 'https://www.linkedin.com/in/varunreddy-guvvala/')
-  expect(
-    await page
-      .locator('a[href^="#"]')
-      .evaluateAll((links) =>
-        links
-          .map((a) => a.getAttribute('href'))
-          .filter((href) => !document.getElementById(href.slice(1))),
-      ),
-  ).toEqual([])
-  await page.emulateMedia({ reducedMotion: 'reduce' })
-  for (const width of [320, 390, 768, 1024, 1440]) {
-    await page.setViewportSize({ width, height: 900 })
-    await page.locator('#projects').scrollIntoViewIfNeeded()
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-      `overflow at ${width}px`,
-    ).toBeTruthy()
-  }
-})
-test('automated WCAG AA checks pass in both themes and case-study dialog', async ({
-  page,
-}) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' })
-  await page.goto('')
-  for (const theme of ['dark', 'light']) {
-    if (theme === 'light')
-      await page.getByRole('button', { name: 'Switch to light theme' }).click()
-    for (const id of [
-      'projects',
-      'about',
-      'approach',
-      'skills',
-      'experience',
-      'education',
-      'contact',
-    ])
-      await page.locator(`#${id}`).scrollIntoViewIfNeeded()
-    await page.waitForTimeout(450)
-    const result = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-      .analyze()
-    expect(result.violations).toEqual([])
-  }
   await page
-    .getByRole('button', { name: `Read case study: ${titles[0]}`, exact: true })
+    .getByRole('button', { name: 'Open AI core system profile' })
     .click()
-  const modal = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-    .analyze()
-  expect(modal.violations).toEqual([])
+  const dialog = page.getByRole('dialog', { name: 'AI core system profile' })
+  await expect(dialog).toContainText(
+    'not the availability of any client production systems',
+  )
+  await dialog
+    .getByRole('button', { name: 'Open professional profile' })
+    .click()
+  await expect(page.locator('.recruiter-profile')).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1 })).toBeFocused()
 })
