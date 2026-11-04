@@ -1,6 +1,8 @@
 # Varunreddy Guvvala — Professional Portfolio
 
-An original, responsive portfolio for a Senior Python AI Engineer. Built with React, Vite, Tailwind CSS, Lucide, and Motion. The AI engineering fieldbook design uses graphite surfaces, lime accents, oversized self-hosted DM Sans typography, a technical index rail, and an interactive retrieval-to-production walkthrough. Selected work leads the page through large case-study panels and industry filters.
+An original, responsive portfolio for a Senior Python AI/ML Engineer, updated from `Varun_Guvvala_AWS_BaseResume.docx`. Built with React, Vite, Tailwind CSS, Lucide, and Motion.
+
+The architecture-blueprint design combines a navy engineering grid, thin cyan connections, inspectable system nodes, Healthcare/Banking/Retail tabs, a searchable project register, and an interactive agent-workflow trace. A connected capability map replaces invented skill ratings. Light and dark modes are supported, with the preference stored locally. KPI tiles show resume-reported outcomes and documented coverage, not live telemetry.
 
 ## Run locally
 
@@ -37,7 +39,7 @@ Where Chromium is already installed, skip the browser download and run:
 CHROMIUM_PATH=/usr/bin/chromium npm test
 ```
 
-The 14 Playwright checks run across desktop and mobile Chromium. They cover resume content, assets, JavaScript errors, navigation, architecture controls, industry filters, timeline disclosures, case-study dialogs, keyboard focus, links, overflow at 320/390/768/1024/1440px, and automated WCAG A/AA accessibility checks for the page and modal. Automated accessibility checks supplement manual review; they do not establish complete accessibility conformance. External email delivery and LinkedIn availability are not tested.
+The 22 Playwright checks run across desktop and mobile Chromium. They cover resume content, assets, JavaScript errors, navigation, selectable architecture nodes, keyboard-accessible domain tabs, project search/filter/reset, agent-trace progression, capability selection, theme persistence, timeline disclosures, case-study dialogs, keyboard focus, links, overflow at 320/390/768/1024/1440px, and automated WCAG A/AA accessibility checks in both themes and the case-study modal. Automated accessibility checks supplement manual review; they do not establish complete accessibility conformance. External email delivery and LinkedIn availability are not tested.
 
 ## Review before publication
 
@@ -65,7 +67,8 @@ If the owner or repository name changes, update `base` in `vite.config.js`, cano
 
 ## Project structure
 
-- `src/App.jsx`: page sections, shared heading/tags/reveal components, architecture interaction, and accessible case-study dialog.
+- `src/App.jsx`: page sections, navigation, persisted theme selection, and contact interactions.
+- `src/components/`: system blueprints, domain workbench, project register, agent trace, capability map, shared UI, and accessible case-study dialog.
 - `src/data.js`: resume-derived experience, skill categories, case studies, and contact information.
 - `src/index.css`: Tailwind integration, design tokens, responsive layouts, and reduced-motion support.
 - `public/`: favicon, social image, crawler instructions, and sitemap; no resume document.
