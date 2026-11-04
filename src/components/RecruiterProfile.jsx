@@ -1,12 +1,6 @@
-import {
-  ArrowUpRight,
-  Download,
-  GraduationCap,
-  Mail,
-  Printer,
-} from 'lucide-react'
+import { ArrowUpRight, GraduationCap, Mail, Printer } from 'lucide-react'
 import { contact, experience, profile, projects, skills } from '../data'
-import { repositoryUrl, resumeUrl } from '../orbitData'
+import { repositoryUrl } from '../orbitData'
 import { Tags } from './ui'
 export default function RecruiterProfile({ onProject, onArchitecture }) {
   return (
@@ -27,10 +21,6 @@ export default function RecruiterProfile({ onProject, onArchitecture }) {
             <span>Data engineering</span>
           </div>
           <div className="profile-actions">
-            <a className="button button-primary" href={resumeUrl} download>
-              Download resume (.docx)
-              <Download size={16} />
-            </a>
             <a
               className="button button-secondary"
               href={`mailto:${contact.email}`}
@@ -174,9 +164,6 @@ export default function RecruiterProfile({ onProject, onArchitecture }) {
             rel="noopener noreferrer"
           >
             Connect on LinkedIn <ArrowUpRight size={15} />
-          </a>
-          <a className="text-button" href={resumeUrl} download>
-            Download resume (.docx) <Download size={15} />
           </a>
         </div>
       </section>

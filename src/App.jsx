@@ -7,7 +7,6 @@ import {
   Check,
   ChevronDown,
   Copy,
-  Download,
   GraduationCap,
   Mail,
   Menu,
@@ -17,12 +16,7 @@ import {
   X,
 } from 'lucide-react'
 import { contact, experience, profile } from './data'
-import {
-  getTechnologyContext,
-  orbitSystems,
-  repositoryUrl,
-  resumeUrl,
-} from './orbitData'
+import { getTechnologyContext, orbitSystems, repositoryUrl } from './orbitData'
 import { SectionHeading, Tags } from './components/ui'
 import BootSequence from './components/BootSequence'
 import CommandCenter from './components/CommandCenter'
@@ -325,9 +319,6 @@ export default function App() {
                     <h3>Bachelor of Technology in Computer Science</h3>
                     <p>Parul University · India</p>
                   </div>
-                  <a className="text-button" href={resumeUrl} download>
-                    Download resume (.docx) <Download size={15} />
-                  </a>
                 </div>
               </div>
             </section>

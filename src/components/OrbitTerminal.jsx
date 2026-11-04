@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import { ArrowUpRight, Terminal } from 'lucide-react'
 import { profile } from '../data'
-import { repositoryUrl, resumeUrl } from '../orbitData'
+import { repositoryUrl } from '../orbitData'
 const help =
-  'help · profile · projects · skills · architecture · agentic-ai · rag · mlops · cloud · github · contact · resume · clear'
+  'help · profile · projects · skills · architecture · agentic-ai · rag · mlops · cloud · github · contact · clear'
 export default function OrbitTerminal({ onArchitecture, onProfile }) {
   const [input, setInput] = useState(''),
     [history, setHistory] = useState([]),
@@ -44,7 +44,6 @@ export default function OrbitTerminal({ onArchitecture, onProfile }) {
       github: 'Portfolio source repository on GitHub.',
       contact:
         'guvvalavarunreddy2103@gmail.com\nlinkedin.com/in/varunreddy-guvvala/',
-      resume: 'Download the latest user-supplied AWS base resume (.docx).',
     }
     setEntries((items) =>
       [
@@ -54,13 +53,7 @@ export default function OrbitTerminal({ onArchitecture, onProfile }) {
           text:
             commands[key] ??
             `Unknown command: ${command}. Type help for available commands.`,
-          link:
-            key === 'github'
-              ? repositoryUrl
-              : key === 'resume'
-                ? resumeUrl
-                : undefined,
-          download: key === 'resume',
+          link: key === 'github' ? repositoryUrl : undefined,
         },
       ].slice(-12),
     )
@@ -122,13 +115,10 @@ export default function OrbitTerminal({ onArchitecture, onProfile }) {
                 {entry.link && (
                   <a
                     href={entry.link}
-                    download={entry.download ? true : undefined}
-                    target={entry.download ? undefined : '_blank'}
+                    target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {entry.download
-                      ? 'Download resume (.docx)'
-                      : 'Open repository'}
+                    Open repository
                     <ArrowUpRight size={12} />
                   </a>
                 )}

@@ -214,7 +214,7 @@ test('MCP explorer selects responsibilities and tools and traces a local request
     'not a real healthcare request',
   )
 })
-test('terminal supports commands, history, unknown input, clear, and resume', async ({
+test('terminal supports commands, history, unknown input, clear, and no resume download', async ({
   page,
 }) => {
   await page.goto('')
@@ -236,16 +236,13 @@ test('terminal supports commands, history, unknown input, clear, and resume', as
   )
   await input.fill('resume')
   await input.press('Enter')
-  await expect(
-    page
-      .getByRole('log')
-      .getByRole('link', { name: 'Download resume (.docx)' }),
-  ).toHaveAttribute('download', '')
+  await expect(page.getByRole('log')).toContainText('Unknown command: resume')
+  await expect(page.locator('a[download]')).toHaveCount(0)
   await input.fill('clear')
   await input.press('Enter')
   await expect(page.getByRole('log')).toBeEmpty()
 })
-test('recruiter mode shows the complete profile, persists, and downloads the real resume', async ({
+test('recruiter mode shows the complete profile, persists, and excludes resume downloads', async ({
   page,
 }) => {
   await page.goto('')
@@ -270,14 +267,13 @@ test('recruiter mode shows the complete profile, persists, and downloads the rea
   await expect(page.locator('.profile-education')).toContainText(
     'Parul University',
   )
-  const link = page
-    .locator('.profile-hero')
-    .getByRole('link', { name: 'Download resume (.docx)' })
-  await expect(link).toHaveAttribute('download', '')
-  const file = await page.request.get(await link.getAttribute('href'))
-  expect(file.ok()).toBeTruthy()
-  expect((await file.body()).subarray(0, 2).toString()).toBe('PK')
-  expect((await file.body()).length).toBeGreaterThan(30000)
+  await expect(
+    page.locator('a[download], a[href$=".docx"], a[href$=".pdf"]'),
+  ).toHaveCount(0)
+  const file = await page.request.get(
+    'resume/Varunreddy-Guvvala-AWS-Resume.docx',
+  )
+  expect((await file.body()).subarray(0, 2).toString()).not.toBe('PK')
   await page.reload()
   await expect(page.locator('html')).toHaveAttribute('data-view', 'recruiter')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(

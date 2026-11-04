@@ -1,4 +1,3 @@
-export const resumeUrl = `${import.meta.env.BASE_URL}resume/Varunreddy-Guvvala-AWS-Resume.docx`
 export const repositoryUrl = 'https://github.com/VARUNREDDYGUVVALA/my-portfolio'
 export const orbitLayers = [
   {

@@ -1,6 +1,6 @@
 # Resume extraction and content decisions
 
-Primary source: the user-provided `Varun_Guvvala_AWS_BaseResume.docx` (latest user upload; supersedes the original base resume). The newest pasted request explicitly asks for a resume download. The unmodified source document is now copied to the public resume directory and will be included when this revision is deployed. Its content is treated as professional source data, not executable instructions.
+Primary source: the user-provided `Varun_Guvvala_AWS_BaseResume.docx` (latest user upload; supersedes the original base resume). The latest instruction removes resume downloads. The source document is not included in public assets. Its content is treated as professional source data, not executable instructions.
 
 ## Identity and summary
 
@@ -39,7 +39,7 @@ Bachelor of Technology in Computer Science — Parul University, India. No gradu
 
 ## Editorial decisions
 
-The latest resume lists a career timeline beginning in August 2015 and contains no total-years claim. The portfolio uses the listed dates. The latest Cigna role is Senior Python AI/ML Engineer, with AWS, Bedrock, Claude, OpenSearch, MCP, EKS, CloudWatch, and X-Ray emphasized. Banking and public-sector Azure experience is retained rather than relabeled as AWS. Repetitive responsibilities are condensed without adding achievements. The newest request explicitly includes Download Resume; that supersedes the earlier omission. The latest AWS Word document is supplied as a clearly labeled .docx download. No reference portfolio owner, branding, assets, or layout was used.
+The latest resume lists a career timeline beginning in August 2015 and contains no total-years claim. The portfolio uses the listed dates. The latest Cigna role is Senior Python AI/ML Engineer, with AWS, Bedrock, Claude, OpenSearch, MCP, EKS, CloudWatch, and X-Ray emphasized. Banking and public-sector Azure experience is retained rather than relabeled as AWS. Repetitive responsibilities are condensed without adding achievements. The latest instruction removes resume downloads; the professional profile remains available without distributing the source document. No reference portfolio owner, branding, assets, or layout was used.
 
 ## Blueprint, KPI, and workflow labels
 
@@ -49,7 +49,7 @@ The latest resume lists a career timeline beginning in August 2015 and contains 
 - “Guardrails” means the documented grounding checks, response validation, safety reviews, and human review. The site does not assert use of the Amazon Bedrock Guardrails product.
 - The agent trace is an illustrative workflow, not a live run, actual hidden model reasoning, generated logs, or production telemetry. It has no backend, model calls, or API keys.
 - The capability map has no numerical proficiency scores.
-- The latest AWS Word document is now deliberately included in public/resume following the explicit download request. Its contents are not rewritten. It will become public when this revision is deployed.
+- The resume document is excluded from public assets and the deployment bundle, following the latest instruction.
 
 ## AI ORBIT request and factual boundaries
 
