@@ -19,6 +19,8 @@ import { experience, projects } from '../data'
 import { repositoryUrl } from '../orbitData'
 import { Tags } from './ui'
 
+import portrait from '../assets/portrait.jpeg'
+
 const sections = [
   ['Overview', 'home'],
   ['Professional summary', 'resume-summary'],
@@ -234,39 +236,81 @@ export default function RecruiterProfile({ onProject, onArchitecture }) {
                 )}
               </div>
             </div>
-            <div className="atlas-hero-content">
-              <p className="eyebrow">A CAREER IN CONNECTED SYSTEMS</p>
-              <h1 id="profile-title" tabIndex={-1}>
-                Varunreddy <br />
-                <em>Guvvala</em>
-              </h1>
-              <p className="atlas-role">{resume.title}</p>
-              <p className="atlas-introduction">{resume.summary[0]}</p>
-              <div className="atlas-hero-actions">
-                <a
-                  className="button button-primary"
-                  href={`mailto:${resume.contact.email}`}
-                >
-                  Let’s connect <Mail size={16} />
-                </a>
-                <a className="text-button" href="#experience">
-                  Explore the experience <ArrowDown size={14} />
-                </a>
-                <button
-                  className="atlas-print text-button"
-                  onClick={printFullResume}
-                >
-                  Print profile <Printer size={14} />
-                </button>
+            <div className="atlas-hero-stage">
+              <div className="atlas-hero-content">
+                <p className="eyebrow">A CAREER IN CONNECTED SYSTEMS</p>
+                <h1 id="profile-title" tabIndex={-1}>
+                  Varunreddy <br />
+                  <em>Guvvala</em>
+                </h1>
+                <p className="atlas-role">{resume.title}</p>
+                <p className="atlas-introduction">{resume.summary[0]}</p>
+                <div className="atlas-hero-actions">
+                  <a
+                    className="button button-primary"
+                    href={`mailto:${resume.contact.email}`}
+                  >
+                    Let’s connect <Mail size={16} />
+                  </a>
+                  <a className="text-button" href="#experience">
+                    Explore the experience <ArrowDown size={14} />
+                  </a>
+                  <button
+                    className="atlas-print text-button"
+                    onClick={printFullResume}
+                  >
+                    Print profile <Printer size={14} />
+                  </button>
+                </div>
               </div>
+              <figure className="atlas-portrait-panel">
+                <div className="atlas-portrait-orbits" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                  <span>PYTHON</span>
+                  <span>AI / ML</span>
+                  <span>CLOUD</span>
+                </div>
+                <div className="atlas-portrait-frame">
+                  {portrait ? (
+                    <img
+                      src={portrait}
+                      alt="Varunreddy Guvvala"
+                      width="1254"
+                      height="1254"
+                      fetchPriority="high"
+                    />
+                  ) : (
+                    <div className="atlas-portrait-monogram" aria-hidden="true">
+                      VG
+                    </div>
+                  )}
+                </div>
+                <figcaption>
+                  <span>THE ENGINEER BEHIND THE SYSTEMS</span>
+                  <strong>
+                    Human perspective.
+                    <br />
+                    Engineering precision.
+                  </strong>
+                </figcaption>
+                <span className="atlas-portrait-coordinate" aria-hidden="true">
+                  01 / PROFESSIONAL PROFILE
+                </span>
+              </figure>
             </div>
-            <div className="atlas-hero-stamp" aria-hidden="true">
-              <span>PYTHON</span>
-              <span>AI / ML</span>
-              <span>ENGINEERING</span>
-              <i />
-              <strong>VG</strong>
-              <span>BUILT FOR THE ENTERPRISE</span>
+            <div
+              className="atlas-discipline-strip"
+              aria-label="Professional focus"
+            >
+              <span>Python engineering</span>
+              <i aria-hidden="true">✳</i>
+              <span>Agentic AI</span>
+              <i aria-hidden="true">✳</i>
+              <span>Cloud architecture</span>
+              <i aria-hidden="true">✳</i>
+              <span>Enterprise delivery</span>
             </div>
             <div className="atlas-facts">
               <div>

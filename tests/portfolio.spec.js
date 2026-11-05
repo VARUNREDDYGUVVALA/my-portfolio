@@ -701,3 +701,33 @@ test('resume reading progress responds to actual scrolling', async ({
   await page.evaluate(() => scrollTo(0, 0))
   await expect(progress).toHaveAttribute('value', '0')
 })
+
+test('recruiter portrait loads and orbital motion can pause', async ({
+  page,
+}) => {
+  await page.goto('')
+  await page
+    .getByRole('button', { name: 'Recruiter mode', exact: true })
+    .click()
+  const portrait = page.getByRole('img', {
+    name: 'Varunreddy Guvvala',
+    exact: true,
+  })
+  await expect(portrait).toBeVisible()
+  await expect
+    .poll(() =>
+      portrait.evaluate((image) => image.complete && image.naturalWidth > 0),
+    )
+    .toBe(true)
+  await page.getByLabel('Recruiter theme').selectOption('aurora')
+  await page.getByRole('button', { name: 'Pause atmosphere' }).click()
+  await expect(page.locator('.atlas-portrait-orbits i').last()).toHaveCSS(
+    'animation-play-state',
+    'paused',
+  )
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await expect(page.locator('.atlas-portrait-orbits i').last()).toHaveCSS(
+    'animation-name',
+    'none',
+  )
+})
