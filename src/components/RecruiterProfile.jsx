@@ -19,7 +19,14 @@ import { experience, projects } from '../data'
 import { repositoryUrl } from '../orbitData'
 import { Tags } from './ui'
 
-import portrait from '../assets/portrait.png'
+import previewPortrait from '../assets/portrait.png'
+
+const uploadedPortraits = import.meta.glob('../assets/*.{jpg,jpeg,JPG,JPEG}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+const portrait = Object.values(uploadedPortraits)[0] || previewPortrait
 
 const sections = [
   ['Overview', 'home'],
