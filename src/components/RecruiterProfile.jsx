@@ -19,14 +19,7 @@ import { experience, projects } from '../data'
 import { repositoryUrl } from '../orbitData'
 import { Tags } from './ui'
 
-import previewPortrait from '../assets/portrait.png'
-
-const uploadedPortraits = import.meta.glob('../assets/*.{jpg,jpeg,JPG,JPEG}', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-})
-const portrait = Object.values(uploadedPortraits)[0] || previewPortrait
+import portrait from '../assets/portrait.jpeg'
 
 const sections = [
   ['Overview', 'home'],
@@ -284,8 +277,8 @@ export default function RecruiterProfile({ onProject, onArchitecture }) {
                     <img
                       src={portrait}
                       alt="Varunreddy Guvvala"
-                      width="1312"
-                      height="1199"
+                      width="1254"
+                      height="1254"
                       fetchPriority="high"
                     />
                   ) : (
