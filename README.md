@@ -85,3 +85,9 @@ If the owner or repository name changes, update `base` in `vite.config.js`, cano
 - `.github/workflows/deploy.yml`: Pages deployment on approved `main` updates, with manual retry support, using the correct `/my-portfolio/` Vite base.
 
 Fonts are bundled locally. The terminal is a fixed command interpreter: it never runs shell commands, evaluates input, or calls external APIs. Print profile uses the browser's print dialog. Orbit labels, architecture components, and constellation technologies are keyboard-operable buttons.
+
+### Recruiter portrait cover
+
+The recruiter cover now pairs the introduction with an arch-shaped portrait frame, orbital discipline labels, and a professional-focus strip. Its ambient motion follows the atmosphere pause control and system reduced-motion preference. The complete resume and no-download policy are preserved.
+
+`src/assets/portrait.png` is an AI-assisted background-removal interpretation of the photo attached in chat. It is included for design review; generation can change photographic details. Replace it with the original uploaded photo or a faithful cutout if requested before publication. The portrait is bundled by Vite with the repository's Pages base path.
